@@ -1,3 +1,4 @@
 import { post } from "./post";
 import { page } from "./page";
-export { page, post };
+import { media } from "./media";
+export const schemaTypes = [page, post, media];
