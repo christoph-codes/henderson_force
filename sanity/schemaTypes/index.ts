@@ -1,5 +1,3 @@
-import { post } from './post';
-import { page } from "./page"
-export {
-	page, post
-}
+import { post } from "./post";
+import { page } from "./page";
+export { page, post };
