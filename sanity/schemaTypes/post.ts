@@ -1,37 +1,37 @@
 import { SchemaTypeDefinition, defineField, defineType } from "sanity";
-import { EditIcon, SunIcon } from "@sanity/icons";
+import { BookIcon, EditIcon } from "@sanity/icons";
 
-export const page: SchemaTypeDefinition = defineType({
-	name: "page",
-	title: "Pages",
+export const post: SchemaTypeDefinition = defineType({
+	name: "post",
+	title: "Posts",
 	type: "document",
-	icon: SunIcon,
+	icon: BookIcon,
 	groups: [
 		{ name: "metadata", title: "Metadata" },
 		{ name: "content", title: "Page Content" },
 	],
 	fields: [
 		defineField({
-			name: "home_page",
-			title: "Home Page?",
+			name: "featured",
+			title: "Featured?",
 			type: "boolean",
 			group: "metadata",
 		}),
 		defineField({
-			name: "name",
+			name: "title",
 			type: "string",
 			validation: (rule) =>
 				rule.required().error(`Required to generate a page on the website`),
-			group: "metadata",
+			group: "content",
 		}),
 		defineField({
 			name: "slug",
 			type: "slug",
-			hidden: ({ document }) => !document?.name,
+			hidden: ({ document }) => !document?.title,
 			validation: (rule) =>
 				rule.required().error(`Required to generate a page on the website`),
 			options: {
-				source: "name",
+				source: "title",
 				slugify: (input) =>
 					input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
 			},
@@ -39,18 +39,8 @@ export const page: SchemaTypeDefinition = defineType({
 		}),
 		defineField({
 			name: "image",
-			description:
-				"This field is important for SEO and should be edited everytime",
+			description: "Need a primary image for SEO",
 			type: "image",
-			group: "content",
-		}),
-		defineField({
-			name: "test_field",
-			type: "string",
-			options: {
-				list: ["in-person", "virtual"],
-				layout: "radio",
-			},
 			group: "content",
 		}),
 		defineField({
@@ -65,35 +55,21 @@ export const page: SchemaTypeDefinition = defineType({
 			group: "metadata",
 		}),
 		defineField({
-			name: "page_content",
+			name: "content",
 			type: "array",
-			of: [
-				{
-					type: "block",
-					marks: {
-						decorators: [],
-						annotations: [
-							{
-								title: "Inline Icon",
-								name: "inlineicon",
-								type: "image",
-							},
-						],
-					},
-				},
-			],
+			of: [{ type: "block" }],
 			group: "content",
 		}),
 	],
 	preview: {
 		select: {
-			title: "name",
+			title: "title",
 			subtitle: "description",
 			media: "image",
 			date: "date",
 		},
 		prepare({ title, subtitle, date, image }) {
-			const nameFormatted = title || "Untitled event";
+			const nameFormatted = title || "Untitled post";
 			const dateFormatted = date
 				? new Date(date).toLocaleDateString(undefined, {
 						month: "short",
