@@ -1,21 +1,21 @@
 import { SchemaTypeDefinition, defineField, defineType } from 'sanity';
-import { CalendarIcon, PackageIcon } from '@sanity/icons';
+import { EditIcon, ImageIcon, SunIcon } from '@sanity/icons';
 
 export const page: SchemaTypeDefinition = defineType({
   name: 'page',
-  title: 'Page',
+  title: 'Pages',
 	type: 'document',
-	icon: CalendarIcon,
+	icon: SunIcon,
 	groups: [
-		{ name: 'seo', title: 'SEO' },
-		{ name: 'page_content', title: 'Page Content' },
+		{ name: 'metadata', title: 'Metadata' },
+		{ name: 'content', title: 'Page Content' },
 	],
 	fields: [
 		defineField({
 			name: 'home_page',
 			title: 'Home Page?',
 			type: 'boolean',
-			group: 'seo'
+			group: 'metadata'
 		  }),
 		defineField({
 			name: 'name',
@@ -23,7 +23,7 @@ export const page: SchemaTypeDefinition = defineType({
 			validation: (rule) => rule
 			.required()
 				.error(`Required to generate a page on the website`),
-			group: 'seo'
+			group: 'metadata'
 		  }),
     defineField({
       name: 'slug',
@@ -39,14 +39,13 @@ export const page: SchemaTypeDefinition = defineType({
 				 .replace(/\s+/g, '-')
 				 .slice(0, 200)
 		},
-		group: 'seo'
-		
+		group: 'metadata'
     }),
     defineField({
 		name: 'image',
 		description: 'This field is important for SEO and should be edited everytime',
 		type: 'image',
-		group: 'page_content'
+		group: 'content'
     }),
     defineField({
       name: 'test_field',
@@ -55,25 +54,36 @@ export const page: SchemaTypeDefinition = defineType({
 			list: ['in-person', 'virtual'],
 			layout: 'radio',
 		},
-		group: 'page_content'
+		group: 'content'
     }),
     defineField({
       name: 'description',
 		type: 'string',
 		initialValue: 'This is an example description PLEASE REPLACE',
-		group: 'seo'
+		group: 'metadata'
     }),
     defineField({
       name: 'date',
 		type: 'datetime',
-		group: 'seo'
+		group: 'metadata'
     }),
     defineField({
       name: 'page_content',
       type: 'array',
-		of: [{ type: 'block' }],
-		group: 'page_content'
-    }),
+		of: [{ type: 'block', marks: {
+			decorators: [],
+			annotations: [
+			  {
+				title: 'Inline Icon',
+				name: 'inlineicon',
+				type: 'image',
+			  }
+			]
+		  } }],
+		group: 'content',
+		
+	}),
+	
 	],
 	preview: {
 		select: {
@@ -97,7 +107,7 @@ export const page: SchemaTypeDefinition = defineType({
 			return {
 				title: nameFormatted,
 				subtitle: subtitle || dateFormatted,
-				media: image || PackageIcon,
+				media: image || EditIcon,
 			  date: dateFormatted,
 			}
 		  },
