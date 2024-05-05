@@ -6,7 +6,9 @@ import { partner_logos } from "./partner_logos";
 import { coach } from "./coach";
 import { game } from "./game";
 import { event } from "./event";
-export const schemaTypes = [
+import { player } from "./player";
+import { SchemaTypeDefinition } from "sanity";
+export const schemaTypes: SchemaTypeDefinition[] = [
 	page,
 	post,
 	media,
@@ -15,4 +17,5 @@ export const schemaTypes = [
 	partner_logos,
 	game,
 	event,
+	player,
 ];
