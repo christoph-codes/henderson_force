@@ -16,11 +16,11 @@ const industry = localFont({
 const gothic = localFont({
 	src: [
 		{
-			path: "./fonts/GOTHIC.ttf",
+			path: "./fonts/GOTHIC.TTF",
 			weight: "400",
 			style: "normal",
 		},
-		{ path: "./fonts/GOTHICB.ttf", weight: "700", style: "bold" },
+		{ path: "./fonts/GOTHICB.TTF", weight: "700", style: "bold" },
 	],
 	variable: "--font-gothic",
 });
