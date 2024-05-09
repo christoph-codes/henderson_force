@@ -45,15 +45,6 @@ export const page: SchemaTypeDefinition = defineType({
 			group: "content",
 		}),
 		defineField({
-			name: "test_field",
-			type: "string",
-			options: {
-				list: ["in-person", "virtual"],
-				layout: "radio",
-			},
-			group: "content",
-		}),
-		defineField({
 			name: "description",
 			type: "string",
 			initialValue: "This is an example description PLEASE REPLACE",

@@ -37,6 +37,19 @@ export const link: SchemaTypeDefinition = defineType({
 			group: "content",
 		}),
 		defineField({
+			name: "category",
+			type: "array",
+			of: [
+				{
+					type: "string",
+				},
+			],
+			options: {
+				list: ["social", "header", "footer"],
+			},
+			group: "content",
+		}),
+		defineField({
 			name: "description",
 			type: "string",
 			placeholder: "Description of the link goes here",
