@@ -9,7 +9,12 @@ export async function POST(req: Request) {
 	try {
 		const data = await resend.emails.send({
 			from: "TKC <cjones@thekirkconcept.com>", // TODO: Will change to hendersonforce email when ready
-			to: ["tkcwebdev@gmail.com", "krubinojr@gmail.com"],
+			to: [
+				"tkcwebdev@gmail.com",
+				"krubinojr@gmail.com",
+				"mattj@hendersonforce.com",
+				"justindoucette@cmbhockey.com",
+			],
 			subject: "New Potential Force Member!",
 			react: EmailTemplate(body.fields),
 			text: "New Potential Force Member!",

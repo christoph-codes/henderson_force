@@ -23,10 +23,10 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = (
 								const subLabel = value[0];
 								const subValue = value[1];
 								return (
-									<li>
+									<p>
 										<strong>{subLabel}:</strong>
 										{subValue}
-									</li>
+									</p>
 								);
 							})}
 				</p>

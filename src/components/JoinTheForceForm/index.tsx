@@ -4,8 +4,12 @@ import { FormEvent, useState } from "react";
 import { Input } from "../Input";
 import { Button } from "../Button";
 import { RadioGroup } from "../RadioGroup";
+import { FaCheckCircle } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export function JoinTheForceForm() {
+	const router = useRouter();
+	const [submitted, setSubmitted] = useState(false);
 	const [personalInfo, setPersonalInfo] = useState({
 		fullName: "",
 		nickname: "",
@@ -52,6 +56,7 @@ export function JoinTheForceForm() {
 			});
 			const data = await response.json();
 			console.log("data: ", data);
+			setSubmitted(true);
 		} catch (error) {
 			console.error("error: ", error);
 		}
@@ -459,7 +464,19 @@ export function JoinTheForceForm() {
 			)}
 			<hr className="border-gray-300 my-8" />
 
-			<Button type="submit">Submit</Button>
+			{!submitted ? (
+				<Button type="submit">Submit</Button>
+			) : (
+				<div className="text-center">
+					<FaCheckCircle className="text-green-500 text-4xl inline" />
+					<h3>Thank You!</h3>
+					<p>
+						You will be contacted soon by a team representative. In the meantime
+						follow us on social media for team updates.
+					</p>
+					<Button onClick={() => router.push("/")}>Home</Button>
+				</div>
+			)}
 		</form>
 	);
 }
