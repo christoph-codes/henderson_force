@@ -36,8 +36,8 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className={`${industry.variable} ${gothic.variable}`}>
+		<html lang="en" className="bg-gray">
+			<body className={`${industry.variable} ${gothic.variable} `}>
 				{children}
 			</body>
 		</html>
