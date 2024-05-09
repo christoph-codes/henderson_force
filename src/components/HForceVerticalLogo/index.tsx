@@ -11,9 +11,9 @@ export function HForceVerticalLogo({
 }: HForceVerticalLogoProps) {
 	return (
 		<svg
-			className={twJoin(`text-[${color}] inline`, className)}
-			width="434"
-			height="507"
+			className={twJoin(`text-[${color}] inline w-full`, className)}
+			width="100%"
+			height="100%"
 			viewBox="0 0 434 507"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
