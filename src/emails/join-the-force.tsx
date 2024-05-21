@@ -42,31 +42,33 @@ export default function JoinTheForce(fields: JoinTheForceProps) {
 									</td>
 									<td className="w-2/3">
 										<strong>
-											{typeof value === "string"
-												? value
-												: Object.values(value).length > 0 && (
-														<Container className="w-full">
-															{Object.entries(value).map((subField) => {
-																const subLabel = subField[0];
-																const subValue = subField[1];
-																if (!subValue) return "N/A";
-																return (
-																	<Row key={subLabel} className="gap-2 w-full">
-																		<Column className="capitalize !font-normal w-1/4">
-																			{subLabel}:
-																		</Column>
-																		<Column className="w-3/4">
-																			<strong>
-																				{typeof subValue === "string"
-																					? subValue
-																					: JSON.stringify(subValue)}
-																			</strong>
-																		</Column>
-																	</Row>
-																);
-															})}
-														</Container>
-													)}
+											{typeof value === "string" ? (
+												value
+											) : Object.values(value).length > 0 ? (
+												<Container className="w-full">
+													{Object.entries(value).map((subField) => {
+														const subLabel = subField[0];
+														const subValue = subField[1];
+														if (!subValue) return null;
+														return (
+															<Row key={subLabel} className="gap-2 w-full">
+																<Column className="capitalize !font-normal w-1/4">
+																	{subLabel}:
+																</Column>
+																<Column className="w-3/4">
+																	<strong>
+																		{typeof subValue === "string"
+																			? subValue
+																			: JSON.stringify(subValue)}
+																	</strong>
+																</Column>
+															</Row>
+														);
+													})}
+												</Container>
+											) : (
+												"N/A"
+											)}
 										</strong>
 									</td>
 								</tr>
