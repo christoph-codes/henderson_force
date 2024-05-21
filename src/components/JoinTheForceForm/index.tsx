@@ -310,7 +310,7 @@ export function JoinTheForceForm() {
 				name="incaseOfEmergency"
 			/>
 			{(personalInfo["Responsible Parties"] === "Parent Support" ||
-				personalInfo["In Case of Emergency"] === "parent") && (
+				personalInfo["In Case of Emergency"] === "Parent") && (
 				<>
 					<h2 className="text-2xl font-semibold">Parent Details</h2>
 					<Input
@@ -380,7 +380,7 @@ export function JoinTheForceForm() {
 				</>
 			)}
 			{(personalInfo["Responsible Parties"] === "Guardian Support" ||
-				personalInfo["In Case of Emergency"] === "guardian") && (
+				personalInfo["In Case of Emergency"] === "Guardian") && (
 				<>
 					<h2 className="text-2xl font-semibold">Guardian Details</h2>
 					<Input
@@ -450,7 +450,7 @@ export function JoinTheForceForm() {
 				</>
 			)}
 			{(personalInfo["Responsible Parties"] === "Other Support" ||
-				personalInfo["In Case of Emergency"] === "other") && (
+				personalInfo["In Case of Emergency"] === "Other") && (
 				<>
 					<h2 className="text-2xl font-semibold">Other Support Details</h2>
 					<Input
