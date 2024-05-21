@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 export function JoinTheForceForm() {
 	const router = useRouter();
 	const [submitted, setSubmitted] = useState(false);
+	const [error, setError] = useState("");
 	const [personalInfo, setPersonalInfo] = useState({
 		fullName: "",
 		nickname: "",
@@ -45,7 +46,54 @@ export function JoinTheForceForm() {
 
 	const submit = async (e: FormEvent) => {
 		e.preventDefault();
+		setError("");
 		console.log("personalInfo: ", personalInfo);
+		if (
+			!personalInfo.fullName ||
+			!personalInfo.address ||
+			!personalInfo.cityStateZip ||
+			!personalInfo.phone ||
+			!personalInfo.email ||
+			!personalInfo.dob ||
+			!personalInfo.position ||
+			!personalInfo.handed ||
+			!personalInfo.currentTeam ||
+			!personalInfo.responsibleParties ||
+			!personalInfo.incaseOfEmergency
+		) {
+			if (
+				personalInfo.responsibleParties === "parentSupport" &&
+				!personalInfo.parentDetails.name &&
+				!personalInfo.parentDetails.phone &&
+				!personalInfo.parentDetails.email &&
+				!personalInfo.parentDetails.relation
+			) {
+				setError("All parent support fields are required.");
+				return;
+			}
+			if (
+				personalInfo.responsibleParties === "guardianSupport" &&
+				!personalInfo.guardianDetails.name &&
+				!personalInfo.guardianDetails.phone &&
+				!personalInfo.guardianDetails.email &&
+				!personalInfo.guardianDetails.relation
+			) {
+				setError("All guardian support fields are required.");
+				return;
+			}
+			if (
+				personalInfo.responsibleParties === "otherSupport" &&
+				!personalInfo.otherSupportDetails.name &&
+				!personalInfo.otherSupportDetails.phone &&
+				!personalInfo.otherSupportDetails.email &&
+				!personalInfo.otherSupportDetails.relation
+			) {
+				setError("All other support fields are required.");
+				return;
+			}
+			setError("Please fill out all required fields.");
+			return;
+		}
 		try {
 			const response = await fetch("/api/send", {
 				method: "POST",
@@ -58,7 +106,8 @@ export function JoinTheForceForm() {
 			console.log("data: ", data);
 			setSubmitted(true);
 		} catch (error) {
-			console.error("error: ", error);
+			console.error("Join the Force Error: ", error);
+			setError("An error occurred submitting your Join the Force Submission.");
 		}
 	};
 
@@ -87,6 +136,7 @@ export function JoinTheForceForm() {
 						nickname: e.target.value,
 					})
 				}
+				placeholder="JD"
 				label="Nickname"
 				type="text"
 				name="nickname"
@@ -99,6 +149,7 @@ export function JoinTheForceForm() {
 						address: e.target.value,
 					})
 				}
+				placeholder="123 Main St."
 				label="Address"
 				type="text"
 				name="address"
@@ -112,6 +163,7 @@ export function JoinTheForceForm() {
 						cityStateZip: e.target.value,
 					})
 				}
+				placeholder="Las Vegas, NV 12345"
 				label="City, State, Zip"
 				type="text"
 				name="cityStateZip"
@@ -125,6 +177,7 @@ export function JoinTheForceForm() {
 						phone: e.target.value,
 					})
 				}
+				placeholder="555-555-5555"
 				label="Phone"
 				type="tel"
 				name="phone"
@@ -138,6 +191,7 @@ export function JoinTheForceForm() {
 						email: e.target.value,
 					})
 				}
+				placeholder="john@doe.com"
 				label="Email"
 				type="email"
 				name="email"
@@ -164,6 +218,7 @@ export function JoinTheForceForm() {
 						position: e.target.value,
 					})
 				}
+				placeholder="Goalie"
 				label="Position"
 				type="text"
 				name="position"
@@ -177,6 +232,7 @@ export function JoinTheForceForm() {
 						handed: e.target.value,
 					})
 				}
+				placeholder="Right"
 				label="Handed"
 				type="text"
 				name="handed"
@@ -190,6 +246,7 @@ export function JoinTheForceForm() {
 						currentTeam: e.target.value,
 					})
 				}
+				placeholder="Las Vegas Knights / AAA"
 				label="Current Team / Level"
 				type="text"
 				name="currentTeam"
@@ -463,6 +520,7 @@ export function JoinTheForceForm() {
 				</>
 			)}
 			<hr className="border-gray-300 my-8" />
+			{error && <p className="text-red-500">{error}</p>}
 
 			{!submitted ? (
 				<Button type="submit">Submit</Button>
