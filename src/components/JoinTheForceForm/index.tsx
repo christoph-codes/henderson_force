@@ -10,42 +10,90 @@ import { useRouter } from "next/navigation";
 export function JoinTheForceForm() {
 	const router = useRouter();
 	const [submitted, setSubmitted] = useState(false);
+	const [error, setError] = useState("");
 	const [personalInfo, setPersonalInfo] = useState({
-		fullName: "",
+		"Full Name": "",
 		nickname: "",
 		address: "",
-		cityStateZip: "",
+		"City / State / Zip": "",
 		phone: "",
 		email: "",
 		dob: "",
 		position: "",
 		handed: "",
-		currentTeam: "",
-		responsibleParties: "", // eighteenOrOlder, parentSupport, guardianSupport, otherSupport
-		parentDetails: {
+		"Current Team": "",
+		"Responsible Parties": "", // eighteenOrOlder, Parent Support, Guardian Support, Other Support
+		"Parent Details": {
 			name: "",
 			phone: "",
 			email: "",
 			relation: "",
 		},
-		guardianDetails: {
+		"Guardian Details": {
 			name: "",
 			phone: "",
 			email: "",
 			relation: "",
 		},
-		otherSupportDetails: {
+		"Other Support Details": {
 			name: "",
 			phone: "",
 			email: "",
 			relation: "",
 		},
-		incaseOfEmergency: "", // parent, guardian, other
+		"In Case of Emergency": "", // parent, guardian, other
 	});
 
 	const submit = async (e: FormEvent) => {
 		e.preventDefault();
+		setError("");
 		console.log("personalInfo: ", personalInfo);
+		if (
+			!personalInfo["Full Name"] ||
+			!personalInfo.address ||
+			!personalInfo["City / State / Zip"] ||
+			!personalInfo.phone ||
+			!personalInfo.email ||
+			!personalInfo.dob ||
+			!personalInfo.position ||
+			!personalInfo.handed ||
+			!personalInfo["Current Team"] ||
+			!personalInfo["Responsible Parties"] ||
+			!personalInfo["In Case of Emergency"]
+		) {
+			if (
+				personalInfo["Responsible Parties"] === "Parent Support" &&
+				!personalInfo["Parent Details"].name &&
+				!personalInfo["Parent Details"].phone &&
+				!personalInfo["Parent Details"].email &&
+				!personalInfo["Parent Details"].relation
+			) {
+				setError("All parent support fields are required.");
+				return;
+			}
+			if (
+				personalInfo["Responsible Parties"] === "Guardian Support" &&
+				!personalInfo["Guardian Details"].name &&
+				!personalInfo["Guardian Details"].phone &&
+				!personalInfo["Guardian Details"].email &&
+				!personalInfo["Guardian Details"].relation
+			) {
+				setError("All guardian support fields are required.");
+				return;
+			}
+			if (
+				personalInfo["Responsible Parties"] === "Other Support" &&
+				!personalInfo["Other Support Details"].name &&
+				!personalInfo["Other Support Details"].phone &&
+				!personalInfo["Other Support Details"].email &&
+				!personalInfo["Other Support Details"].relation
+			) {
+				setError("All other support fields are required.");
+				return;
+			}
+			setError("Please fill out all required fields.");
+			return;
+		}
 		try {
 			const response = await fetch("/api/send", {
 				method: "POST",
@@ -58,7 +106,8 @@ export function JoinTheForceForm() {
 			console.log("data: ", data);
 			setSubmitted(true);
 		} catch (error) {
-			console.error("error: ", error);
+			console.error("Join the Force Error: ", error);
+			setError("An error occurred submitting your Join the Force Submission.");
 		}
 	};
 
@@ -66,11 +115,11 @@ export function JoinTheForceForm() {
 		<form className="flex flex-col space-y-4 py-8" onSubmit={submit}>
 			<h2 className="text-2xl font-semibold">Personal Information</h2>
 			<Input
-				value={personalInfo.fullName}
+				value={personalInfo["Full Name"] as string}
 				onChange={(e) =>
 					setPersonalInfo({
 						...personalInfo,
-						fullName: e.target.value,
+						"Full Name": e.target.value,
 					})
 				}
 				label="Full Name"
@@ -87,6 +136,7 @@ export function JoinTheForceForm() {
 						nickname: e.target.value,
 					})
 				}
+				placeholder="JD"
 				label="Nickname"
 				type="text"
 				name="nickname"
@@ -99,19 +149,21 @@ export function JoinTheForceForm() {
 						address: e.target.value,
 					})
 				}
+				placeholder="123 Main St."
 				label="Address"
 				type="text"
 				name="address"
 				required
 			/>
 			<Input
-				value={personalInfo.cityStateZip}
+				value={personalInfo["City / State / Zip"]}
 				onChange={(e) =>
 					setPersonalInfo({
 						...personalInfo,
-						cityStateZip: e.target.value,
+						"City / State / Zip": e.target.value,
 					})
 				}
+				placeholder="Las Vegas, NV 12345"
 				label="City, State, Zip"
 				type="text"
 				name="cityStateZip"
@@ -125,6 +177,7 @@ export function JoinTheForceForm() {
 						phone: e.target.value,
 					})
 				}
+				placeholder="555-555-5555"
 				label="Phone"
 				type="tel"
 				name="phone"
@@ -138,6 +191,7 @@ export function JoinTheForceForm() {
 						email: e.target.value,
 					})
 				}
+				placeholder="john@doe.com"
 				label="Email"
 				type="email"
 				name="email"
@@ -164,6 +218,7 @@ export function JoinTheForceForm() {
 						position: e.target.value,
 					})
 				}
+				placeholder="Goalie"
 				label="Position"
 				type="text"
 				name="position"
@@ -177,19 +232,21 @@ export function JoinTheForceForm() {
 						handed: e.target.value,
 					})
 				}
+				placeholder="Right"
 				label="Handed"
 				type="text"
 				name="handed"
 				required
 			/>
 			<Input
-				value={personalInfo.currentTeam}
+				value={personalInfo["Current Team"]}
 				onChange={(e) =>
 					setPersonalInfo({
 						...personalInfo,
-						currentTeam: e.target.value,
+						"Current Team": e.target.value,
 					})
 				}
+				placeholder="Las Vegas Knights / AAA"
 				label="Current Team / Level"
 				type="text"
 				name="currentTeam"
@@ -198,29 +255,29 @@ export function JoinTheForceForm() {
 			<h2 className="text-2xl font-semibold">Responsible Parties</h2>
 
 			<RadioGroup
-				value={personalInfo.responsibleParties}
+				value={personalInfo["Responsible Parties"]}
 				options={[
 					{
-						value: "eighteenOrOlder+",
+						value: "18+",
 						label: "I am over 18 years of age and do not receive any support.",
 					},
 					{
-						value: "parentSupport",
+						value: "Parent Support",
 						label: "I receive support from my parent(s).",
 					},
 					{
-						value: "guardianSupport",
+						value: "Guardian Support",
 						label: "I receive support from a legal guardian.",
 					},
 					{
-						value: "otherSupport",
+						value: "Other Support",
 						label: "I receive support from other sources.",
 					},
 				]}
 				onChange={(radioValue) =>
 					setPersonalInfo({
 						...personalInfo,
-						responsibleParties: radioValue,
+						"Responsible Parties": radioValue,
 					})
 				}
 				label="Please choose the statement that best describes your situation?"
@@ -228,41 +285,41 @@ export function JoinTheForceForm() {
 			/>
 			<h2 className="text-2xl font-semibold">In Case of Emergency</h2>
 			<RadioGroup
-				value={personalInfo.incaseOfEmergency}
+				value={personalInfo["In Case of Emergency"]}
 				options={[
 					{
-						value: "parent",
+						value: "Parent",
 						label: "Parent(s)",
 					},
 					{
-						value: "guardian",
+						value: "Guardian",
 						label: "Guardian(s)",
 					},
 					{
-						value: "other",
+						value: "Other",
 						label: "Other(s)",
 					},
 				]}
 				onChange={(radioValue) =>
 					setPersonalInfo({
 						...personalInfo,
-						incaseOfEmergency: radioValue,
+						"In Case of Emergency": radioValue,
 					})
 				}
 				label="Best Person to Contact in Case of Emergency?"
 				name="incaseOfEmergency"
 			/>
-			{(personalInfo.responsibleParties === "parentSupport" ||
-				personalInfo.incaseOfEmergency === "parent") && (
+			{(personalInfo["Responsible Parties"] === "Parent Support" ||
+				personalInfo["In Case of Emergency"] === "Parent") && (
 				<>
 					<h2 className="text-2xl font-semibold">Parent Details</h2>
 					<Input
-						value={personalInfo.parentDetails.name}
+						value={personalInfo["Parent Details"].name}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								parentDetails: {
-									...personalInfo.parentDetails,
+								"Parent Details": {
+									...personalInfo["Parent Details"],
 									name: e.target.value,
 								},
 							})
@@ -273,12 +330,12 @@ export function JoinTheForceForm() {
 						required
 					/>
 					<Input
-						value={personalInfo.parentDetails.phone}
+						value={personalInfo["Parent Details"].phone}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								parentDetails: {
-									...personalInfo.parentDetails,
+								"Parent Details": {
+									...personalInfo["Parent Details"],
 									phone: e.target.value,
 								},
 							})
@@ -289,12 +346,12 @@ export function JoinTheForceForm() {
 						required
 					/>
 					<Input
-						value={personalInfo.parentDetails.email}
+						value={personalInfo["Parent Details"].email}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								parentDetails: {
-									...personalInfo.parentDetails,
+								"Parent Details": {
+									...personalInfo["Parent Details"],
 									email: e.target.value,
 								},
 							})
@@ -305,12 +362,12 @@ export function JoinTheForceForm() {
 						required
 					/>
 					<Input
-						value={personalInfo.parentDetails.relation}
+						value={personalInfo["Parent Details"].relation}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								parentDetails: {
-									...personalInfo.parentDetails,
+								"Parent Details": {
+									...personalInfo["Parent Details"],
 									relation: e.target.value,
 								},
 							})
@@ -322,17 +379,17 @@ export function JoinTheForceForm() {
 					/>
 				</>
 			)}
-			{(personalInfo.responsibleParties === "guardianSupport" ||
-				personalInfo.incaseOfEmergency === "guardian") && (
+			{(personalInfo["Responsible Parties"] === "Guardian Support" ||
+				personalInfo["In Case of Emergency"] === "Guardian") && (
 				<>
 					<h2 className="text-2xl font-semibold">Guardian Details</h2>
 					<Input
-						value={personalInfo.guardianDetails.name}
+						value={personalInfo["Guardian Details"].name}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								guardianDetails: {
-									...personalInfo.guardianDetails,
+								"Guardian Details": {
+									...personalInfo["Guardian Details"],
 									name: e.target.value,
 								},
 							})
@@ -343,12 +400,12 @@ export function JoinTheForceForm() {
 						required
 					/>
 					<Input
-						value={personalInfo.guardianDetails.phone}
+						value={personalInfo["Guardian Details"].phone}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								guardianDetails: {
-									...personalInfo.guardianDetails,
+								"Guardian Details": {
+									...personalInfo["Guardian Details"],
 									phone: e.target.value,
 								},
 							})
@@ -359,12 +416,12 @@ export function JoinTheForceForm() {
 						required
 					/>
 					<Input
-						value={personalInfo.guardianDetails.email}
+						value={personalInfo["Guardian Details"].email}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								guardianDetails: {
-									...personalInfo.guardianDetails,
+								"Guardian Details": {
+									...personalInfo["Guardian Details"],
 									email: e.target.value,
 								},
 							})
@@ -375,12 +432,12 @@ export function JoinTheForceForm() {
 						required
 					/>
 					<Input
-						value={personalInfo.guardianDetails.relation}
+						value={personalInfo["Guardian Details"].relation}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								guardianDetails: {
-									...personalInfo.guardianDetails,
+								"Guardian Details": {
+									...personalInfo["Guardian Details"],
 									relation: e.target.value,
 								},
 							})
@@ -392,77 +449,78 @@ export function JoinTheForceForm() {
 					/>
 				</>
 			)}
-			{(personalInfo.responsibleParties === "otherSupport" ||
-				personalInfo.incaseOfEmergency === "other") && (
+			{(personalInfo["Responsible Parties"] === "Other Support" ||
+				personalInfo["In Case of Emergency"] === "Other") && (
 				<>
 					<h2 className="text-2xl font-semibold">Other Support Details</h2>
 					<Input
-						value={personalInfo.otherSupportDetails.name}
+						value={personalInfo["Other Support Details"].name}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								otherSupportDetails: {
-									...personalInfo.otherSupportDetails,
+								"Other Support Details": {
+									...personalInfo["Other Support Details"],
 									name: e.target.value,
 								},
 							})
 						}
 						label="Other Supports Name"
 						type="text"
-						name="otherSupportName"
+						name="Other SupportName"
 						required
 					/>
 					<Input
-						value={personalInfo.otherSupportDetails.phone}
+						value={personalInfo["Other Support Details"].phone}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								otherSupportDetails: {
-									...personalInfo.otherSupportDetails,
+								"Other Support Details": {
+									...personalInfo["Other Support Details"],
 									phone: e.target.value,
 								},
 							})
 						}
 						label="Other Supports Phone"
 						type="tel"
-						name="otherSupportPhone"
+						name="Other SupportPhone"
 						required
 					/>
 					<Input
-						value={personalInfo.otherSupportDetails.email}
+						value={personalInfo["Other Support Details"].email}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								otherSupportDetails: {
-									...personalInfo.otherSupportDetails,
+								"Other Support Details": {
+									...personalInfo["Other Support Details"],
 									email: e.target.value,
 								},
 							})
 						}
 						label="Other Supports Email"
 						type="email"
-						name="otherSupportEmail"
+						name="Other SupportEmail"
 						required
 					/>
 					<Input
-						value={personalInfo.otherSupportDetails.relation}
+						value={personalInfo["Other Support Details"].relation}
 						onChange={(e) =>
 							setPersonalInfo({
 								...personalInfo,
-								otherSupportDetails: {
-									...personalInfo.otherSupportDetails,
+								"Other Support Details": {
+									...personalInfo["Other Support Details"],
 									relation: e.target.value,
 								},
 							})
 						}
 						label="Relation"
 						type="text"
-						name="otherSupportRelation"
+						name="Other SupportRelation"
 						required
 					/>
 				</>
 			)}
 			<hr className="border-gray-300 my-8" />
+			{error && <p className="text-red-500">{error}</p>}
 
 			{!submitted ? (
 				<Button type="submit">Submit</Button>
