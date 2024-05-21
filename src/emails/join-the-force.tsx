@@ -2,29 +2,21 @@ import {
 	Html,
 	Tailwind,
 	Container,
-	Img,
 	Row,
 	Column,
 	Section,
 } from "@react-email/components";
 import config from "../../tailwind.config";
+import HForceLogoPNG from "@/components/HForceLogoPNG";
 
 export type JoinTheForceProps = Record<string, string | Record<string, string>>;
-
-const baseUrl =
-	process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_BASE_URL : "";
 
 export default function JoinTheForce(fields: JoinTheForceProps) {
 	return (
 		<Tailwind config={config}>
 			<Html className="p-3 !font-mono" style={{ fontFamily: "sans-serif" }}>
 				<Section className="text-center">
-					<Img
-						src={`${baseUrl}/static/hforce_icon.png`}
-						alt="Henderson Force Logo"
-						width="144"
-						className="inline"
-					/>
+					<HForceLogoPNG />
 					<h1 className="text-gray">New Potential Force Member!</h1>
 				</Section>
 				<Container className="border-gray-500">
