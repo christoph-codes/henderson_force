@@ -31,6 +31,10 @@ export function UnderConstruction({
 	};
 }) {
 	const router = useRouter();
+	const routeToCampPage = () => {
+		window.location.href =
+			"https://henderson-force.sportngin.com/register/form/677617449";
+	};
 	return (
 		<div className="min-h-screen flex flex-col md:justify-center py-8 md:pt-0 items-center bg-bolts bg-cover bg-no-repeat bg-center">
 			<div className="text-center flex flex-col items-center flex-wrap">
@@ -38,9 +42,15 @@ export function UnderConstruction({
 				<h1 className="text-4xl md:text-6xl text-wrap">
 					{content.pageContent.name}
 				</h1>
-				<p className="text-gray-300 text-xl">
+				{/* <p className="text-gray-300 text-xl">
 					{content.pageContent.description}
-				</p>
+				</p> */}
+				<div className="py-4">
+					<h3 className="mb">Open Camp July 12-14</h3>
+					<Button onClick={() => routeToCampPage()} className="mt-8">
+						Sign up now!
+					</Button>
+				</div>
 				{content.socialLinks.length > 0 && (
 					<div className="flex gap-4 md:flex-row md:gap-8">
 						{content.socialLinks.map((link) => {
