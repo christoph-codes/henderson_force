@@ -33,7 +33,7 @@ export const link: SchemaTypeDefinition = defineType({
 		}),
 		defineField({
 			name: "link",
-			type: "url",
+			type: "string",
 			group: "content",
 		}),
 		defineField({
