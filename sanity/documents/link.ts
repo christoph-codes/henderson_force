@@ -1,14 +1,14 @@
-import { SparklesIcon } from "@sanity/icons";
+import { LinkIcon } from "@sanity/icons";
 import { SchemaTypeDefinition, defineField, defineType } from "sanity";
 
-export const partner_logos: SchemaTypeDefinition = defineType({
-	name: "partner_logos",
-	title: "Partner Logos",
+export const link: SchemaTypeDefinition = defineType({
+	name: "link",
+	title: "Links",
 	type: "document",
-	icon: SparklesIcon,
+	icon: LinkIcon,
 	groups: [
 		{ name: "metadata", title: "Metadata" },
-		{ name: "content", title: "Content" },
+		{ name: "content", title: "Link" },
 	],
 	fields: [
 		defineField({
@@ -37,33 +37,29 @@ export const partner_logos: SchemaTypeDefinition = defineType({
 			group: "content",
 		}),
 		defineField({
-			name: "logo_image",
-			type: "image",
-			validation: (rule) => rule.required().error(`Required for partner logo`),
+			name: "category",
+			type: "array",
+			of: [
+				{
+					type: "string",
+				},
+			],
+			options: {
+				list: ["social", "header", "footer"],
+			},
 			group: "content",
 		}),
 		defineField({
 			name: "description",
 			type: "string",
+			placeholder: "Description of the link goes here",
 			group: "metadata",
-		}),
-		defineField({
-			name: "sponsor_level",
-			type: "string",
-			options: {
-				list: ["gold", "silver", "bronze", "partner"],
-				layout: "radio",
-			},
-			validation: (rule) => rule.required().error(`Required for partner logo`),
-			group: "metadata",
-			hidden: true,
 		}),
 	],
 	preview: {
 		select: {
 			title: "name",
 			subtitle: "description",
-			media: "logo_image",
 		},
 	},
 });

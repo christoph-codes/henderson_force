@@ -8,7 +8,10 @@ import { game } from "./game";
 import { event } from "./event";
 import { player } from "./player";
 import { SchemaTypeDefinition } from "sanity";
-export const schemaTypes: SchemaTypeDefinition[] = [
+import siteConfig from "./siteConfig";
+// import navigation from "./navigation";
+export const documents: SchemaTypeDefinition[] = [
+	siteConfig,
 	page,
 	post,
 	media,
@@ -18,4 +21,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
 	game,
 	event,
 	player,
+	// navigation,
 ];

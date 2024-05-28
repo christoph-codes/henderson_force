@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import SideNavProvider from "@/providers/SideNavProvider";
 
 const industry = localFont({
 	src: [
@@ -37,8 +38,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className="bg-gray">
-			<body className={`${industry.variable} ${gothic.variable} `}>
-				{children}
+			<body
+				className={`${industry.variable} ${gothic.variable} overflow-x-hidden`}
+			>
+				<SideNavProvider>{children}</SideNavProvider>
 			</body>
 		</html>
 	);
