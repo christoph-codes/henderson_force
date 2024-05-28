@@ -60,6 +60,12 @@ export const post: SchemaTypeDefinition = defineType({
 			of: [{ type: "block" }],
 			group: "content",
 		}),
+		defineField({
+			name: "link",
+			title: "Link",
+			type: "string",
+			group: "content",
+		}),
 	],
 	preview: {
 		select: {

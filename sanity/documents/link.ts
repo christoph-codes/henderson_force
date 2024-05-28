@@ -55,6 +55,34 @@ export const link: SchemaTypeDefinition = defineType({
 			placeholder: "Description of the link goes here",
 			group: "metadata",
 		}),
+		defineField({
+			name: "children",
+			title: "Sub Links",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [
+						defineField({
+							name: "name",
+							type: "string",
+						}),
+						defineField({
+							name: "link",
+							type: "string",
+						}),
+						defineField({
+							name: "target",
+							type: "string",
+							title: "Open in",
+							options: {
+								list: ["_self", "_blank"],
+							},
+						}),
+					],
+				},
+			],
+		}),
 	],
 	preview: {
 		select: {
