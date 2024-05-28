@@ -17,10 +17,10 @@ export function Hero({ title, description, logo, className }: HeroProps) {
 				className
 			)}
 		>
-			<div className="max-w-full md:max-w-3xl md:mx-auto px-4 flex flex-col gap-6">
+			<div className="max-w-full md:max-w-3xl md:mx-auto px-4 flex flex-col items-center gap-6">
 				{logo && (
 					<Link href="/">
-						<HForceLogo color="#FFF" className="w-36 h-36 mx-auto" />
+						<HForceLogo color="#FFF" className="w-36 h-36" />
 					</Link>
 				)}
 				<h1 className="text-6xl">{title}</h1>
