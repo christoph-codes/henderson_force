@@ -13,7 +13,13 @@ export type Logo = {
 	link: string;
 };
 
-export function Header({ sponsors }: { sponsors?: SanityDocument[] }) {
+export function Header({
+	sponsors,
+	navLinks,
+}: {
+	sponsors?: SanityDocument[];
+	navLinks: SanityDocument[];
+}) {
 	const { toggleSideNav } = useSideNav();
 	return (
 		<header className="py-2 md:py-0 sticky shadow-md">
@@ -52,7 +58,7 @@ export function Header({ sponsors }: { sponsors?: SanityDocument[] }) {
 			</div>
 			<div className="py-3 bg-black hidden md:block">
 				<div className="container flex justify-between items-center gap-3">
-					<Navigation />
+					<Navigation navItems={navLinks} />
 					<Link
 						className="flex gap-4 items-center"
 						href="https://www.usphlpremier.com/"

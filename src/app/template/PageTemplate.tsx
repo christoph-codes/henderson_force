@@ -5,15 +5,19 @@ import { sanityFetch } from "../../../sanity/lib/client";
 import Footer from "@/components/Footer";
 
 const GLOBAL_QUERY = `*[_type == "partner_logos"]`;
+const HEADER_QUERY = `*[_type == "link" && "header" in category[]] | order(_createdAt asc)`;
 
 export async function PageTemplate({ children }: PropsWithChildren) {
 	const sponsors: SanityDocument[] = await sanityFetch<SanityDocument[]>({
 		query: GLOBAL_QUERY,
 	});
+	const headerLinks: SanityDocument[] = await sanityFetch<SanityDocument[]>({
+		query: HEADER_QUERY,
+	});
 
 	return (
 		<>
-			<Header sponsors={sponsors} />
+			<Header sponsors={sponsors} navLinks={headerLinks} />
 			<main className="space-y-8">{children}</main>
 			<Footer />
 		</>
