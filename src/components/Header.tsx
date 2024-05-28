@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { HForceHorizontalLogo } from "./HForceHorizontalLogo";
-import { Navigtion } from "./Navigation";
+import { Navigation } from "./Navigation";
 import { FaBars } from "react-icons/fa";
 import { useSideNav } from "@/providers/SideNavProvider";
 import { urlForImage } from "../../sanity/lib/image";
@@ -52,7 +52,7 @@ export function Header({ sponsors }: { sponsors?: SanityDocument[] }) {
 			</div>
 			<div className="py-3 bg-black hidden md:block">
 				<div className="container flex justify-between items-center gap-3">
-					<Navigtion />
+					<Navigation />
 					<Link
 						className="flex gap-4 items-center"
 						href="https://www.usphlpremier.com/"

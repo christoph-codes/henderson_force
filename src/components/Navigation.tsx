@@ -1,12 +1,12 @@
 import { navItems } from "@/utils/navItems";
 import Link from "next/link";
 
-export function Navigtion() {
+export function Navigation() {
 	return (
 		<nav className="flex justify-between items-center gap-5">
 			{navItems.map((navItem) => {
 				return (
-					<>
+					<span className="relative">
 						<Link
 							key={navItem.label}
 							href={navItem.href ?? ""}
@@ -32,7 +32,7 @@ export function Navigtion() {
 								</div>
 							)}
 						</Link>
-					</>
+					</span>
 				);
 			})}
 		</nav>
