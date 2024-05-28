@@ -5,7 +5,7 @@ import Link from "next/link";
 export type HeroProps = {
 	className?: string;
 	title: string;
-	description: string;
+	description?: string;
 	logo?: boolean;
 };
 
@@ -13,7 +13,7 @@ export function Hero({ title, description, logo, className }: HeroProps) {
 	return (
 		<div
 			className={twMerge(
-				"bg-purple text-white p-8 min-h-96 flex flex-col justify-center text-center items-center mb-12",
+				"bg-purple text-white p-8 min-h-96 flex flex-col justify-center text-center items-center mb-12 bg-cover bg-no-repeat",
 				className
 			)}
 		>
@@ -24,7 +24,7 @@ export function Hero({ title, description, logo, className }: HeroProps) {
 					</Link>
 				)}
 				<h1 className="text-6xl">{title}</h1>
-				<p className="text-2xl">{description}</p>
+				{description && <p className="text-2xl">{description}</p>}
 			</div>
 		</div>
 	);
