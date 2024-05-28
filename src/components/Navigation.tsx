@@ -6,7 +6,7 @@ export function Navigation() {
 		<nav className="flex justify-between items-center gap-5">
 			{navItems.map((navItem) => {
 				return (
-					<span className="relative">
+					<>
 						<Link
 							key={navItem.label}
 							href={navItem.href ?? ""}
@@ -32,7 +32,7 @@ export function Navigation() {
 								</div>
 							)}
 						</Link>
-					</span>
+					</>
 				);
 			})}
 		</nav>
