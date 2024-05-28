@@ -47,17 +47,6 @@ export const partner_logos: SchemaTypeDefinition = defineType({
 			type: "string",
 			group: "metadata",
 		}),
-		defineField({
-			name: "sponsor_level",
-			type: "string",
-			options: {
-				list: ["gold", "silver", "bronze", "partner"],
-				layout: "radio",
-			},
-			validation: (rule) => rule.required().error(`Required for partner logo`),
-			group: "metadata",
-			hidden: true,
-		}),
 	],
 	preview: {
 		select: {
