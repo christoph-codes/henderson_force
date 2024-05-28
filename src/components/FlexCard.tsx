@@ -22,7 +22,7 @@ const FlexCard = ({ link, image, title, description }: FlexCardProps) => {
 			>
 				<h2>{title}</h2>
 			</div>
-			<p className="text-center md:text-left font-mono group-hover:text-white text-gray-400">
+			<p className="text-center font-mono group-hover:text-white text-gray-400">
 				{description}
 			</p>
 		</Link>
