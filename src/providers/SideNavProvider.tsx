@@ -26,7 +26,6 @@ const SideNavProvider = ({ children }: PropsWithChildren) => {
 	return (
 		<SideNavContext.Provider value={{ isSideNavOpen, toggleSideNav }}>
 			{children}
-			<Sidenav isOpen={isSideNavOpen} toggleSidenav={toggleSideNav} />
 		</SideNavContext.Provider>
 	);
 };

@@ -3,6 +3,7 @@ import { SanityDocument } from "next-sanity";
 import { PropsWithChildren } from "react";
 import { sanityFetch } from "../../../sanity/lib/client";
 import Footer from "@/components/Footer";
+import Sidenav from "@/components/Sidenav";
 
 const GLOBAL_QUERY = `*[_type == "partner_logos"]`;
 const HEADER_QUERY = `*[_type == "link" && "header" in category[]] | order(_createdAt asc)`;
@@ -19,6 +20,7 @@ export async function PageTemplate({ children }: PropsWithChildren) {
 		<>
 			<Header sponsors={sponsors} navLinks={headerLinks} />
 			<main className="space-y-8">{children}</main>
+			<Sidenav links={headerLinks} />
 			<Footer />
 		</>
 	);
