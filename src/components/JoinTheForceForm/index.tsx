@@ -5,43 +5,45 @@ import { Input } from "../Input";
 import { Button } from "../Button";
 import { RadioGroup } from "../RadioGroup";
 import { FaCheckCircle } from "react-icons/fa";
-import SocialLinks from "../SocialLinks";
+import Link from "next/link";
+
+const defaultPersonalInfo = {
+	"Full Name": "",
+	nickname: "",
+	address: "",
+	"City / State / Zip": "",
+	phone: "",
+	email: "",
+	dob: "",
+	position: "",
+	handed: "",
+	"Current Team": "",
+	"Responsible Parties": "", // eighteenOrOlder, Parent Support, Guardian Support, Other Support
+	"Parent Details": {
+		name: "",
+		phone: "",
+		email: "",
+		relation: "",
+	},
+	"Guardian Details": {
+		name: "",
+		phone: "",
+		email: "",
+		relation: "",
+	},
+	"Other Support Details": {
+		name: "",
+		phone: "",
+		email: "",
+		relation: "",
+	},
+	"In Case of Emergency": "", // parent, guardian, other
+};
 
 export function JoinTheForceForm() {
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState("");
-	const [personalInfo, setPersonalInfo] = useState({
-		"Full Name": "",
-		nickname: "",
-		address: "",
-		"City / State / Zip": "",
-		phone: "",
-		email: "",
-		dob: "",
-		position: "",
-		handed: "",
-		"Current Team": "",
-		"Responsible Parties": "", // eighteenOrOlder, Parent Support, Guardian Support, Other Support
-		"Parent Details": {
-			name: "",
-			phone: "",
-			email: "",
-			relation: "",
-		},
-		"Guardian Details": {
-			name: "",
-			phone: "",
-			email: "",
-			relation: "",
-		},
-		"Other Support Details": {
-			name: "",
-			phone: "",
-			email: "",
-			relation: "",
-		},
-		"In Case of Emergency": "", // parent, guardian, other
-	});
+	const [personalInfo, setPersonalInfo] = useState(defaultPersonalInfo);
 
 	const submit = async (e: FormEvent) => {
 		e.preventDefault();
@@ -105,6 +107,7 @@ export function JoinTheForceForm() {
 			});
 			await response.json();
 			setSubmitted(true);
+			setPersonalInfo(defaultPersonalInfo);
 		} catch (error) {
 			console.error("Join the Force Error: ", error);
 			setError("An error occurred submitting your Join the Force Submission.");
@@ -532,7 +535,9 @@ export function JoinTheForceForm() {
 						You will be contacted soon by a team representative. In the meantime
 						follow us on social media for team updates.
 					</p>
-					<SocialLinks />
+					<Link className="btn" href="/social">
+						View Social Media
+					</Link>
 				</div>
 			)}
 		</form>
