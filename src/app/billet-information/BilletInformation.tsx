@@ -4,28 +4,38 @@ import { Button } from "@/components/Button";
 import { Hero } from "@/components/Hero";
 import { Input } from "@/components/Input";
 import { RadioGroup } from "@/components/RadioGroup";
-import { Radio } from "@headlessui/react";
 import { SanityDocument } from "next-sanity";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
+const defaultPersonalInfo = {
+	"Full Name": "",
+	Address: "",
+	"Phone Number": "",
+	Email: "",
+	"Have you been a billet host previously?": "",
+};
+
 const BilletInformation = ({ content }: { content: SanityDocument }) => {
-	const [personalInfo, setPersonalInfo] = useState({
-		"Full Name": "",
-		Address: "",
-		"Phone Number": "",
-		Email: "",
-		"Have you been a billet host previously?": "",
-	});
+	const [personalInfo, setPersonalInfo] = useState(defaultPersonalInfo);
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState("");
 	const router = useRouter();
 	const submit = async (e: FormEvent) => {
 		e.preventDefault();
 		setError("");
-		if (!personalInfo["Full Name"]) return;
-		setSubmitted(true);
+		if (
+			!personalInfo["Full Name"] ||
+			!personalInfo.Address ||
+			!personalInfo["Phone Number"] ||
+			!personalInfo.Email ||
+			!personalInfo["Have you been a billet host previously?"]
+		) {
+			setError("Please enter all fields.");
+			return;
+		}
+
 		try {
 			const response = await fetch("/api/send", {
 				method: "POST",
@@ -39,6 +49,7 @@ const BilletInformation = ({ content }: { content: SanityDocument }) => {
 			});
 			await response.json();
 			setSubmitted(true);
+			setPersonalInfo(defaultPersonalInfo);
 		} catch (error) {
 			console.error("Join the Force Error: ", error);
 			setError("An error occurred submitting your Join the Force Submission.");
