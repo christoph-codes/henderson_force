@@ -28,10 +28,12 @@ export async function PageTemplate({ children, content }: PageTemplateProps) {
 				{children}
 				{content && (
 					<section className="container rounded-md p-8 text-center text-2xl">
-						{content.map((block: any) => (
+						{content?.map((block: any) => (
 							<div key={block._key}>
 								{block._type === "block" && (
-									<p className="text-lg">{block.children[0].text}</p>
+									<p className="text-lg">
+										{block.children[0].text}
+									</p>
 								)}
 							</div>
 						))}
