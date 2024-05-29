@@ -63,6 +63,7 @@ export function Header({
 						className="flex gap-4 items-center"
 						href="https://www.usphlpremier.com/"
 						passHref
+						target="_blank"
 					>
 						<img
 							className="max-h-10"
