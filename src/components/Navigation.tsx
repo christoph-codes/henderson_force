@@ -3,27 +3,32 @@ import Link from "next/link";
 import { useState } from "react";
 
 export function Navigation({ navItems }: { navItems: SanityDocument[] }) {
-	const [showDropdown, setShowDropdown] = useState(false);
-	const routeToLink = (link: string) => {
-		window.location.href = link;
+	const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
+
+	const handleMouseEnter = (itemId: string) => {
+		setHoveredDropdown(itemId);
+	};
+
+	const handleMouseLeave = () => {
+		setHoveredDropdown(null);
 	};
 
 	return (
 		<nav className="flex justify-between items-center gap-5">
 			{navItems.map((navItem) => {
+				const hasChildren = navItem.children && navItem.children.length > 0;
+				const isDropdownOpen = hoveredDropdown === navItem._id;
+
 				return (
 					<button
 						key={navItem._id}
-						className="peer/link hover:text-primary transition-colors group/hover:text-white group/hover:bg-black group/rounded-md group/p-3 group/hover:bg-gray-900 text-gray-400 relative"
-						onClick={() =>
-							navItem.children
-								? setShowDropdown(!showDropdown)
-								: routeToLink(navItem.link)
-						}
+						className="peer/link hover:text-white transition-colors group/hover:text-white group/hover:bg-black group/rounded-md group/p-3 group/hover:bg-gray-900 text-gray-400 relative"
+						onMouseEnter={() => handleMouseEnter(navItem._id)}
+						onMouseLeave={handleMouseLeave}
 					>
 						{navItem.name}
 
-						{navItem.children && showDropdown && (
+						{hasChildren && isDropdownOpen && (
 							<div className="bg-gray-900 flex-col gap-2 rounded-md absolute p-3 flex">
 								{navItem.children?.map(
 									(child: {
