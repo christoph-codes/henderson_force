@@ -21,8 +21,6 @@ export async function PageTemplate({ children, content }: PageTemplateProps) {
 		query: HEADER_QUERY,
 	});
 
-	console.log("content", content);
-
 	return (
 		<>
 			<Header sponsors={sponsors} navLinks={headerLinks} />

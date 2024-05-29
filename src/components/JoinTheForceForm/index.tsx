@@ -47,7 +47,6 @@ export function JoinTheForceForm() {
 	const submit = async (e: FormEvent) => {
 		e.preventDefault();
 		setError("");
-		console.log("personalInfo: ", personalInfo);
 		if (
 			!personalInfo["Full Name"] ||
 			!personalInfo.address ||
@@ -103,7 +102,6 @@ export function JoinTheForceForm() {
 				body: JSON.stringify({ fields: personalInfo }),
 			});
 			const data = await response.json();
-			console.log("data: ", data);
 			setSubmitted(true);
 		} catch (error) {
 			console.error("Join the Force Error: ", error);

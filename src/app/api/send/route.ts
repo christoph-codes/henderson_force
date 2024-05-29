@@ -12,7 +12,6 @@ const primaryEmailRecipients = [
 
 export async function POST(req: Request) {
 	const body = await req.json();
-	console.log("fields", body.fields);
 	try {
 		const data = await resend.emails.send({
 			from: "TKC <cjones@thekirkconcept.com>", // TODO: Will change to hendersonforce email when ready
