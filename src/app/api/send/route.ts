@@ -1,4 +1,5 @@
-import JoinTheForce from "@/emails/join-the-force";
+import DefaultEmail from "@/emails/defaultEmail";
+import JoinTheForce from "@/emails/defaultEmail";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API);
@@ -12,18 +13,17 @@ const primaryEmailRecipients = [
 
 export async function POST(req: Request) {
 	const body = await req.json();
-	console.log("fields", body.fields);
 	try {
 		const data = await resend.emails.send({
-			from: "TKC <cjones@thekirkconcept.com>", // TODO: Will change to hendersonforce email when ready
+			from: "Henderson Force Admin <info@hendersonforce.com>",
 			to:
 				process.env.NODE_ENV === "production"
 					? primaryEmailRecipients
 					: ["tkcwebdev@gmail.com"],
 			bcc: process.env.NODE_ENV === "production" ? blindRecipients : [],
-			subject: "New Potential Force Member!",
-			react: JoinTheForce(body.fields),
-			text: "New Potential Force Member!",
+			subject: body.subject,
+			react: DefaultEmail(body.fields, body.subject),
+			text: body.subject,
 		});
 
 		return Response.json(data);

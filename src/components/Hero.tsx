@@ -7,11 +7,19 @@ export type HeroProps = {
 	title: string;
 	description?: string;
 	logo?: boolean;
+	bg?: string;
 };
 
-export function Hero({ title, description, logo, className }: HeroProps) {
+export function Hero({
+	title,
+	description,
+	logo,
+	className,
+	bg = "/default_bg.png",
+}: HeroProps) {
 	return (
 		<div
+			style={bg ? { backgroundImage: `url("${bg}")` } : {}}
 			className={twMerge(
 				"bg-purple text-white p-8 min-h-96 flex flex-col justify-center text-center items-center mb-12 bg-cover bg-no-repeat",
 				className
@@ -23,8 +31,8 @@ export function Hero({ title, description, logo, className }: HeroProps) {
 						<HForceLogo color="#FFF" className="w-36 h-36" />
 					</Link>
 				)}
-				<h1 className="text-6xl">{title}</h1>
-				{description && <p className="text-2xl">{description}</p>}
+				<h1 className="text-4xl md:text-6xl">{title}</h1>
+				{description && <p className="text-2xl capitalize">{description}</p>}
 			</div>
 		</div>
 	);

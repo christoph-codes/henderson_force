@@ -22,7 +22,7 @@ export function Header({
 }) {
 	const { toggleSideNav } = useSideNav();
 	return (
-		<header className="py-2 md:py-0 sticky shadow-md">
+		<header className="py-2 md:py-0 sticky z-20 shadow-md top-0 bg-gray">
 			<div className="container">
 				<div className="flex justify-between items-center py-3">
 					<Link href="/" passHref>
@@ -63,6 +63,7 @@ export function Header({
 						className="flex gap-4 items-center"
 						href="https://www.usphlpremier.com/"
 						passHref
+						target="_blank"
 					>
 						<img
 							className="max-h-10"

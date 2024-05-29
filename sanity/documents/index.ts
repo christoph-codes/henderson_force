@@ -3,7 +3,7 @@ import { page } from "./page";
 import { media } from "./media";
 import { link } from "./link";
 import { partner_logos } from "./partner_logos";
-import { coach } from "./coach";
+import { staff } from "./staff";
 import { game } from "./game";
 import { event } from "./event";
 import { player } from "./player";
@@ -16,7 +16,7 @@ export const documents: SchemaTypeDefinition[] = [
 	post,
 	media,
 	link,
-	coach,
+	staff,
 	partner_logos,
 	game,
 	event,

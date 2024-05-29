@@ -1,11 +1,11 @@
 import { SanityDocument } from "next-sanity";
-import { Home } from "./Home";
+import { Staff } from "./Staff";
 import { Metadata } from "next";
-import { querySanity, sanityFetch } from "../../../sanity/lib/client";
-import { PageTemplate } from "../template/PageTemplate";
+import { querySanity } from "../../../../sanity/lib/client";
+import { PageTemplate } from "@/app/template/PageTemplate";
 
-const PAGE_QUERY = `*[_type == "page" && slug.current == "home"]`;
-const FEATURED_NEWS_QUERY = `*[_type == "post" && featured == true]`;
+const PAGE_QUERY = `*[_type == "page" && slug.current == "staff"]`;
+const STAFF_QUERY = `*[_type == "staff"]`;
 
 export async function generateMetadata(): Promise<Metadata> {
 	const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);
@@ -18,11 +18,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
 	const content = await querySanity<SanityDocument>(PAGE_QUERY);
-	const news = await querySanity<SanityDocument[]>(FEATURED_NEWS_QUERY);
+	const staff = await querySanity<SanityDocument[]>(STAFF_QUERY);
 
 	return (
 		<PageTemplate content={content[0]?.page_content}>
-			<Home content={content[0]} news={news} />
+			<Staff content={content[0]} staff={staff} />
 		</PageTemplate>
 	);
 }

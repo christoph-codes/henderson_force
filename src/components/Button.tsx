@@ -1,18 +1,18 @@
 import { ButtonHTMLAttributes } from "react";
+import { twMerge } from "tailwind-merge";
 
 export type ButtonProps = {
 	children: string;
+	className?: string;
 };
 
 export function Button({
 	children,
+	className,
 	...rest
 }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) {
 	return (
-		<button
-			{...rest}
-			className="bg-primary hover:bg-primary-900 text-white font-bold py-2 px-4 font-sans rounded-md uppercase italic text-xl"
-		>
+		<button {...rest} className={twMerge("btn", className)}>
 			{children}
 		</button>
 	);

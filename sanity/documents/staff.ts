@@ -1,9 +1,9 @@
 import { BoltIcon, EditIcon } from "@sanity/icons";
 import { SchemaTypeDefinition, defineField, defineType } from "sanity";
 
-export const coach: SchemaTypeDefinition = defineType({
-	name: "coach",
-	title: "Coaches",
+export const staff: SchemaTypeDefinition = defineType({
+	name: "staff",
+	title: "Staff",
 	type: "document",
 	icon: BoltIcon,
 	groups: [
@@ -45,10 +45,25 @@ export const coach: SchemaTypeDefinition = defineType({
 			group: ["content", "metadata"],
 		}),
 		defineField({
+			name: "type",
+			type: "string",
+			title: "Staff Type",
+			options: {
+				list: ["coach", "leadership", "ownership", "support"],
+				layout: "radio",
+			},
+		}),
+		defineField({
 			name: "position",
 			title: "Position",
 			type: "string",
 			placeholder: "Assistant coach",
+			group: "content",
+		}),
+		defineField({
+			name: "bio",
+			type: "array",
+			of: [{ type: "block" }],
 			group: "content",
 		}),
 	],

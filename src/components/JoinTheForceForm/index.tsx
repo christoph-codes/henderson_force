@@ -5,10 +5,9 @@ import { Input } from "../Input";
 import { Button } from "../Button";
 import { RadioGroup } from "../RadioGroup";
 import { FaCheckCircle } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+import SocialLinks from "../SocialLinks";
 
 export function JoinTheForceForm() {
-	const router = useRouter();
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState("");
 	const [personalInfo, setPersonalInfo] = useState({
@@ -47,7 +46,6 @@ export function JoinTheForceForm() {
 	const submit = async (e: FormEvent) => {
 		e.preventDefault();
 		setError("");
-		console.log("personalInfo: ", personalInfo);
 		if (
 			!personalInfo["Full Name"] ||
 			!personalInfo.address ||
@@ -100,10 +98,12 @@ export function JoinTheForceForm() {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ fields: personalInfo }),
+				body: JSON.stringify({
+					fields: personalInfo,
+					subject: "Join the Force",
+				}),
 			});
-			const data = await response.json();
-			console.log("data: ", data);
+			await response.json();
 			setSubmitted(true);
 		} catch (error) {
 			console.error("Join the Force Error: ", error);
@@ -532,7 +532,7 @@ export function JoinTheForceForm() {
 						You will be contacted soon by a team representative. In the meantime
 						follow us on social media for team updates.
 					</p>
-					<Button onClick={() => router.push("/")}>Home</Button>
+					<SocialLinks />
 				</div>
 			)}
 		</form>
