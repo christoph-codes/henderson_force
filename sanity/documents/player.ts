@@ -73,8 +73,8 @@ export const player: SchemaTypeDefinition = defineType({
 		}),
 		defineField({
 			name: "bio",
-			title: "Bio",
-			type: "text",
+			type: "array",
+			of: [{ type: "block" }],
 			group: "content",
 		}),
 	],
