@@ -4,6 +4,7 @@ import { Button } from "@/components/Button";
 import { Hero } from "@/components/Hero";
 import { Input } from "@/components/Input";
 import { RadioGroup } from "@/components/RadioGroup";
+import SocialLinks from "@/components/SocialLinks";
 import { SanityDocument } from "next-sanity";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
@@ -148,7 +149,7 @@ const BilletInformation = ({ content }: { content: SanityDocument }) => {
 								You will be contacted soon by a team representative. In the
 								meantime follow us on social media for team updates.
 							</p>
-							<Button onClick={() => router.push("/")}>Home</Button>
+							<SocialLinks />
 						</div>
 					)}
 				</form>

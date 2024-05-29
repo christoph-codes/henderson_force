@@ -1,12 +1,7 @@
-"use client";
-
-import { Button } from "@/components/Button";
 import { HForceVerticalLogo } from "@/components/HForceVerticalLogo";
 import SocialLinks from "@/components/SocialLinks";
-import { getSocialIcons } from "@/utils/helpers";
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export function UnderConstruction({
 	content,
@@ -16,11 +11,6 @@ export function UnderConstruction({
 		socialLinks: SanityDocument[];
 	};
 }) {
-	const router = useRouter();
-	const routeToCampPage = () => {
-		window.location.href =
-			"https://henderson-force.sportngin.com/register/form/677617449";
-	};
 	return (
 		<div className="min-h-screen flex flex-col md:justify-center py-8 md:pt-0 items-center bg-bolts bg-cover bg-no-repeat bg-center">
 			<div className="text-center flex flex-col items-center flex-wrap">
@@ -33,16 +23,19 @@ export function UnderConstruction({
 				</p> */}
 				<div className="py-4">
 					<h3 className="mb">Open Camp July 12-14</h3>
-					<Button onClick={() => routeToCampPage()} className="mt-8">
+					<Link
+						href="https://henderson-force.sportngin.com/register/form/677617449"
+						className="mt-8 btn block w-max mx-auto"
+					>
 						Sign up now!
-					</Button>
+					</Link>
 				</div>
 				<SocialLinks />
 				<hr className="my-8 border-gray-500 border w-full inset-0" />
 				<h3 className="mb">Ready to play for the Force?</h3>
-				<Button onClick={() => router.push("/join")} className="mt-8">
+				<Link href={"/join"} className="mt-8 btn">
 					Join The Force
-				</Button>
+				</Link>
 			</div>
 		</div>
 	);

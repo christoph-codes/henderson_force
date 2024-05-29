@@ -5,10 +5,9 @@ import { Input } from "../Input";
 import { Button } from "../Button";
 import { RadioGroup } from "../RadioGroup";
 import { FaCheckCircle } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+import SocialLinks from "../SocialLinks";
 
 export function JoinTheForceForm() {
-	const router = useRouter();
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState("");
 	const [personalInfo, setPersonalInfo] = useState({
@@ -533,7 +532,7 @@ export function JoinTheForceForm() {
 						You will be contacted soon by a team representative. In the meantime
 						follow us on social media for team updates.
 					</p>
-					<Button onClick={() => router.push("/")}>Home</Button>
+					<SocialLinks />
 				</div>
 			)}
 		</form>
