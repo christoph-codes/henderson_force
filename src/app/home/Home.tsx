@@ -25,15 +25,6 @@ export function Home({
 					/>
 				))}
 			</section>
-			<section className="container rounded-md p-8 bg-gray-900 text-center text-2xl">
-				{content.page_content.map((block: any) => (
-					<div key={block._key}>
-						{block._type === "block" && (
-							<p className="text-lg">{block.children[0].text}</p>
-						)}
-					</div>
-				))}
-			</section>
 			<JoinTheForceBanner />
 		</>
 	);
