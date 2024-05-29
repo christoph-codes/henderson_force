@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 import { SanityDocument } from "next-sanity";
-import { ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
 import { sanityFetch } from "../../../sanity/lib/client";
 import Footer from "@/components/Footer";
 import Sidenav from "@/components/Sidenav";
@@ -27,13 +27,20 @@ export async function PageTemplate({ children, content }: PageTemplateProps) {
 			<main className="space-y-8 pb-8 min-h-screen">
 				{children}
 				{content && (
-					<section className="container rounded-md p-8 text-center text-2xl">
+					<section className="max-w-full md:max-w-3xl md:mx-auto rounded-md p-8 space-y-4">
 						{content?.map((block: any) => (
-							<div key={block._key}>
-								{block._type === "block" && (
-									<p className="text-lg">{block.children[0].text}</p>
+							<Fragment key={block._key}>
+								{block.style === "h2" && <h3>{block.children[0].text}</h3>}
+								{block.style === "normal" && (
+									<>
+										{block.listItem ? (
+											<li>{block.children[0].text}</li>
+										) : (
+											<p className="mb-3">{block.children[0].text}</p>
+										)}
+									</>
 								)}
-							</div>
+							</Fragment>
 						))}
 					</section>
 				)}
