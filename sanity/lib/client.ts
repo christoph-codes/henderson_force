@@ -25,3 +25,9 @@ export async function sanityFetch<QueryResponse>({
 		},
 	});
 }
+
+export async function querySanity<T>(query: string): Promise<T> {
+	return await sanityFetch<T>({
+		query,
+	});
+}

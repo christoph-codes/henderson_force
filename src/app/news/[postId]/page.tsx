@@ -9,9 +9,7 @@ export async function generateMetadata({
 }: {
 	params: { postId: string };
 }): Promise<Metadata> {
-	const [details]: SanityDocument[] = await sanityFetch<SanityDocument[]>({
-		query: `*[_type == "post" && slug.current == "${params.postId}"]`,
-	});
+	const [details]: SanityDocument[] = await fetchSanity(params.postId);
 
 	return {
 		title: `${details.title} | Henderson Force News`,
@@ -20,13 +18,17 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { postId: string } }) {
-	const details: SanityDocument[] = await sanityFetch<SanityDocument[]>({
-		query: `*[_type == "post" && slug.current == "${params.postId}"]`,
-	});
+	const [details]: SanityDocument[] = await fetchSanity(params.postId);
 
 	return (
 		<PageTemplate>
-			<Post details={details[0]} />
+			<Post details={details} />
 		</PageTemplate>
 	);
+}
+
+async function fetchSanity(postId: string): Promise<SanityDocument[]> {
+	return await sanityFetch<SanityDocument[]>({
+		query: `*[_type == "post" && slug.current == "${postId}"]`,
+	});
 }

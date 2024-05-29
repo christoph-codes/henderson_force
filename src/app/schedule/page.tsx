@@ -2,14 +2,18 @@ import { SanityDocument } from "next-sanity";
 import { Metadata } from "next";
 import Schedule from "./Schedule";
 import { PageTemplate } from "@/app/template/PageTemplate";
-import { sanityFetch } from "../../../sanity/lib/client";
+import { querySanity, sanityFetch } from "../../../sanity/lib/client";
 
 const PAGE_QUERY = `*[_type == "page" && slug.current == "schedule"]`;
 
-export const metadata: Metadata = {
-	title: "Schedule | Henderson Force",
-	description: "View our schedule for the Henderson Force.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);
+
+	return {
+		title: `${content.name} | Henderson Force`,
+		description: content.description,
+	};
+}
 
 export default async function Page() {
 	const content: SanityDocument = await sanityFetch<SanityDocument>({

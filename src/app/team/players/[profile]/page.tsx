@@ -11,9 +11,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 	const profileId = params.profile;
 
-	const [details]: SanityDocument[] = await sanityFetch<SanityDocument[]>({
-		query: `*[_type == "player" && slug.current == "${profileId}"]`,
-	});
+	const [details]: SanityDocument[] = await fetchSanity(profileId);
 
 	return {
 		title: `${details.name} | Henderson Force`,
@@ -28,13 +26,17 @@ export default async function Page({
 }: {
 	params: { profile: string };
 }) {
-	const details: SanityDocument[] = await sanityFetch<SanityDocument[]>({
-		query: `*[_type == "player" && slug.current == "${params.profile}"]`,
-	});
+	const [details]: SanityDocument[] = await fetchSanity(params.profile);
 
 	return (
 		<PageTemplate>
-			<PlayerProfile profile={details[0]} />
+			<PlayerProfile profile={details} />
 		</PageTemplate>
 	);
+}
+
+async function fetchSanity(profileId: string): Promise<SanityDocument[]> {
+	return await sanityFetch<SanityDocument[]>({
+		query: `*[_type == "player" && slug.current == "${profileId}"]`,
+	});
 }

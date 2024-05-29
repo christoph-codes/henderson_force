@@ -9,9 +9,7 @@ export async function generateMetadata({
 }: {
 	params: { profile: string };
 }): Promise<Metadata> {
-	const [details]: SanityDocument[] = await sanityFetch<SanityDocument[]>({
-		query: `*[_type == "staff" && slug.current == "${params.profile}"]`,
-	});
+	const [details]: SanityDocument[] = await fetchSanity(params.profile);
 
 	return {
 		title: `${details.name} | Henderson Force`,
@@ -25,13 +23,17 @@ export default async function Page({
 }: {
 	params: { profile: string };
 }) {
-	const details: SanityDocument[] = await sanityFetch<SanityDocument[]>({
-		query: `*[_type == "staff" && slug.current == "${params.profile}"]`,
-	});
+	const details: SanityDocument[] = await fetchSanity(params.profile);
 
 	return (
 		<PageTemplate>
 			<StaffProfile profile={details[0]} />
 		</PageTemplate>
 	);
+}
+
+async function fetchSanity(profileId: string): Promise<SanityDocument[]> {
+	return await sanityFetch<SanityDocument[]>({
+		query: `*[_type == "staff" && slug.current == "${profileId}"]`,
+	});
 }
