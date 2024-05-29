@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { SanityDocument } from "next-sanity";
 import { sanityFetch } from "../../../sanity/lib/client";
 import { JoinTheForce } from ".";
+import { PageTemplate } from "../template/PageTemplate";
 
 const UNDER_CONSTRUCTION_QUERY = `*[_type == "page" && slug.current == "join" ]`;
 
@@ -16,8 +17,8 @@ export default async function Page() {
 	});
 
 	return (
-		<main className="min-h-screen w-full">
+		<PageTemplate>
 			<JoinTheForce content={content[0]} />
-		</main>
+		</PageTemplate>
 	);
 }
