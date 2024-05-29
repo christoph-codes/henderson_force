@@ -21,19 +21,19 @@ export async function PageTemplate({ children, content }: PageTemplateProps) {
 		query: HEADER_QUERY,
 	});
 
+	console.log("content", content);
+
 	return (
 		<>
 			<Header sponsors={sponsors} navLinks={headerLinks} />
-			<main className="space-y-8 pb-8">
+			<main className="space-y-8 pb-8 min-h-screen">
 				{children}
 				{content && (
 					<section className="container rounded-md p-8 text-center text-2xl">
 						{content?.map((block: any) => (
 							<div key={block._key}>
 								{block._type === "block" && (
-									<p className="text-lg">
-										{block.children[0].text}
-									</p>
+									<p className="text-lg">{block.children[0].text}</p>
 								)}
 							</div>
 						))}

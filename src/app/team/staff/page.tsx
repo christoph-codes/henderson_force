@@ -2,6 +2,7 @@ import { SanityDocument } from "next-sanity";
 import { Staff } from "./Staff";
 import { Metadata } from "next";
 import { sanityFetch } from "../../../../sanity/lib/client";
+import { PageTemplate } from "@/app/template/PageTemplate";
 
 const PAGE_QUERY = `*[_type == "page" && slug.current == "staff"]`;
 const STAFF_QUERY = `*[_type == "staff"]`;
@@ -19,5 +20,9 @@ export default async function Page() {
 		query: STAFF_QUERY,
 	});
 
-	return <Staff content={content[0]} staff={staff} />;
+	return (
+		<PageTemplate content={content[0]?.page_content}>
+			<Staff content={content[0]} staff={staff} />
+		</PageTemplate>
+	);
 }

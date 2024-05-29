@@ -21,7 +21,7 @@ export default async function Page() {
 	});
 
 	return (
-		<PageTemplate content={content}>
+		<PageTemplate content={content[0]?.page_content}>
 			<Home content={content[0]} news={news} />
 		</PageTemplate>
 	);

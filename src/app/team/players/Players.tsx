@@ -17,7 +17,7 @@ export function Players({
 		<>
 			<Hero
 				className="bg-[url('/default_bg.png')]"
-				title={content.title}
+				title={content.name}
 				description={content.description}
 				logo
 			/>

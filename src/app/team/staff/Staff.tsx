@@ -1,7 +1,6 @@
 "use client";
 
 import { Hero } from "@/components/Hero";
-import { PageTemplate } from "@/app/template/PageTemplate";
 import { SanityDocument } from "next-sanity";
 import JoinTheForceBanner from "@/components/JoinTheForceBanner";
 import StaffCard, { StaffType } from "@/components/StaffCard";
@@ -15,7 +14,7 @@ export function Staff({
 	staff: SanityDocument[];
 }) {
 	return (
-		<PageTemplate>
+		<>
 			<Hero className="bg-[url('/default_bg.png')]" title={content.name} logo />
 			<Link href="/team" className="btn text-center mx-auto w-max block">
 				« Back to Team
@@ -41,6 +40,6 @@ export function Staff({
 				</section>
 			)}
 			<JoinTheForceBanner />
-		</PageTemplate>
+		</>
 	);
 }

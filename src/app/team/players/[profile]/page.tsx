@@ -31,8 +31,6 @@ export default async function Page({
 	const details: SanityDocument[] = await sanityFetch<SanityDocument[]>({
 		query: `*[_type == "player" && slug.current == "${params.profile}"]`,
 	});
-	console.log("details", details);
-	console.log("profile", params.profile);
 
 	return (
 		<PageTemplate>
