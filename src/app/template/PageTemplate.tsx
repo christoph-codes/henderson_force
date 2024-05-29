@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 import { SanityDocument } from "next-sanity";
-import { PropsWithChildren } from "react";
+import { ReactNode } from "react";
 import { sanityFetch } from "../../../sanity/lib/client";
 import Footer from "@/components/Footer";
 import Sidenav from "@/components/Sidenav";
@@ -8,7 +8,12 @@ import Sidenav from "@/components/Sidenav";
 const GLOBAL_QUERY = `*[_type == "partner_logos"]`;
 const HEADER_QUERY = `*[_type == "link" && "header" in category[]] | order(_createdAt asc)`;
 
-export async function PageTemplate({ children }: PropsWithChildren) {
+export type PageTemplateProps = {
+	children: ReactNode;
+	content?: SanityDocument;
+};
+
+export async function PageTemplate({ children, content }: PageTemplateProps) {
 	const sponsors: SanityDocument[] = await sanityFetch<SanityDocument[]>({
 		query: GLOBAL_QUERY,
 	});
@@ -19,7 +24,20 @@ export async function PageTemplate({ children }: PropsWithChildren) {
 	return (
 		<>
 			<Header sponsors={sponsors} navLinks={headerLinks} />
-			<main className="space-y-8">{children}</main>
+			<main className="space-y-8 pb-8">
+				{children}
+				{content && (
+					<section className="container rounded-md p-8 text-center text-2xl">
+						{content.map((block: any) => (
+							<div key={block._key}>
+								{block._type === "block" && (
+									<p className="text-lg">{block.children[0].text}</p>
+								)}
+							</div>
+						))}
+					</section>
+				)}
+			</main>
 			<Sidenav links={headerLinks} />
 			<Footer />
 		</>
