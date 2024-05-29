@@ -5,7 +5,7 @@ import { getSocialIcons } from "@/utils/helpers";
 
 const SOCIAL_LINKS_QUERY = `*[_type == "link" && "social" in category[]]`;
 
-const SocialLinks = async () => {
+const SocialLinks = async ({ size = 8 }) => {
 	const socialLinks: SanityDocument[] =
 		await querySanity<SanityDocument[]>(SOCIAL_LINKS_QUERY);
 	return (
@@ -19,7 +19,7 @@ const SocialLinks = async () => {
 							className="mt-4 transition-colors"
 							target="_blank"
 						>
-							{getSocialIcons(link.slug.current)}
+							{getSocialIcons(link.slug.current, size)}
 						</Link>
 					);
 				})}
