@@ -9,15 +9,18 @@ import {
 import config from "../../tailwind.config";
 import HForceLogoPNG from "@/components/HForceLogoPNG";
 
-export type JoinTheForceProps = Record<string, string | Record<string, string>>;
+export type DefaultEmailProps = Record<string, string | Record<string, string>>;
 
-export default function JoinTheForce(fields: JoinTheForceProps) {
+export default function DefaultEmail(
+	fields: DefaultEmailProps,
+	subject: string
+) {
 	return (
 		<Tailwind config={config}>
 			<Html className="p-3 !font-mono" style={{ fontFamily: "sans-serif" }}>
 				<Section className="text-center">
 					<HForceLogoPNG />
-					<h1 className="text-gray">New Potential Force Member!</h1>
+					<h1 className="text-gray">{subject}</h1>
 				</Section>
 				<Container className="border-gray-500">
 					<div className="flex flex-col gap-2">
@@ -77,7 +80,7 @@ export default function JoinTheForce(fields: JoinTheForceProps) {
 	);
 }
 
-JoinTheForce.PreviewProps = {
+DefaultEmail.PreviewProps = {
 	"Full Name": "John Doe",
 	nickname: "JD",
 	address: "123 Main St",
@@ -108,4 +111,4 @@ JoinTheForce.PreviewProps = {
 		relation: "Other",
 	},
 	"In Case Of Emergency": "Parent",
-} as JoinTheForceProps;
+} as DefaultEmailProps;
