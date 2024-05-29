@@ -99,9 +99,12 @@ export function JoinTheForceForm() {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ fields: personalInfo }),
+				body: JSON.stringify({
+					fields: personalInfo,
+					subject: "Join the Force",
+				}),
 			});
-			const data = await response.json();
+			await response.json();
 			setSubmitted(true);
 		} catch (error) {
 			console.error("Join the Force Error: ", error);

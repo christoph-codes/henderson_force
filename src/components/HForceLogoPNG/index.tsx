@@ -1,5 +1,7 @@
 const baseUrl =
-	process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_BASE_URL : "";
+	process.env.NODE_ENV === "production"
+		? process.env.NEXT_PUBLIC_BASE_URL
+		: "https://hendersonforce.com";
 
 export default function HForceLogoPNG() {
 	return (
