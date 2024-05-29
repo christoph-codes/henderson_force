@@ -11,7 +11,7 @@ export const fetchSantityData = async (queryString: string) => {
 
 export const getSocialIcons = (category: string) => {
 	const styles =
-		"h-8 w-8 hover:text-white transition-colors duration-150 text-gray-300";
+		"h-12 w-12 hover:text-white transition-colors duration-150 text-gray-300";
 	switch (category) {
 		case "facebook":
 			return <FaFacebook className={styles} />;
