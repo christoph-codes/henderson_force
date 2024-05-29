@@ -5,13 +5,12 @@ import Link from "next/link";
 import { FaWindowClose } from "react-icons/fa";
 import { useSideNav } from "@/providers/SideNavProvider";
 import { Fragment } from "react";
-import SocialLinks from "./SocialLinks";
 
 const Sidenav = ({ links }: { links: SanityDocument[] }) => {
 	const { isSideNavOpen, toggleSideNav } = useSideNav();
 	return (
 		<aside
-			className={`bg-gray-900 z-20 p-3 w-[300px] absolute top-0 right-0 ${isSideNavOpen ? "translate-x-0" : "translate-x-[300px]"} h-screen transition-transform flex flex-col gap-1 overflow-y-auto`}
+			className={`bg-gray-900 z-20 p-3 w-[300px] fixed top-0 right-0 ${isSideNavOpen ? "translate-x-0" : "translate-x-[300px]"} h-screen transition-transform flex flex-col gap-1 overflow-y-auto`}
 		>
 			<button
 				onClick={() => toggleSideNav()}
