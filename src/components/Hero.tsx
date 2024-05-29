@@ -24,7 +24,7 @@ export function Hero({ title, description, logo, className }: HeroProps) {
 					</Link>
 				)}
 				<h1 className="text-6xl">{title}</h1>
-				{description && <p className="text-2xl">{description}</p>}
+				{description && <p className="text-2xl capitalize">{description}</p>}
 			</div>
 		</div>
 	);
