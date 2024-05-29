@@ -9,6 +9,7 @@ const Team = ({ content }: { content: SanityDocument }) => {
 			<div className="container flex flex-col gap-6">
 				<BannerCard title="players" link="/team/players" />
 				<BannerCard title="Staff" link="/team/staff" />
+				<BannerCard title="Alumni" link="/team/alumni" />
 			</div>
 		</>
 	);

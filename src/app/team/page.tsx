@@ -17,7 +17,7 @@ export default async function Page() {
 	});
 
 	return (
-		<PageTemplate content={content?.page_content}>
+		<PageTemplate content={content[0]?.page_content}>
 			<Team content={content[0]} />
 		</PageTemplate>
 	);
