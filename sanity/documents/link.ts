@@ -37,6 +37,14 @@ export const link: SchemaTypeDefinition = defineType({
 			group: "content",
 		}),
 		defineField({
+			name: "target",
+			type: "string",
+			title: "Open in",
+			options: {
+				list: ["_self", "_blank"],
+			},
+		}),
+		defineField({
 			name: "category",
 			type: "array",
 			of: [

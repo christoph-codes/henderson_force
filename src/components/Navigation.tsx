@@ -33,6 +33,7 @@ export function Navigation({ navItems }: { navItems: SanityDocument[] }) {
 					>
 						<Link
 							className={`${isNavItemActive ? "font-bold text-white" : ""}`}
+							target={navItem.target}
 							href={navItem.link}
 						>
 							{navItem.name}
