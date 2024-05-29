@@ -7,11 +7,19 @@ export type HeroProps = {
 	title: string;
 	description?: string;
 	logo?: boolean;
+	bg?: string;
 };
 
-export function Hero({ title, description, logo, className }: HeroProps) {
+export function Hero({
+	title,
+	description,
+	logo,
+	className,
+	bg = "/default_bg.png",
+}: HeroProps) {
 	return (
 		<div
+			style={bg ? { backgroundImage: `url("${bg}")` } : {}}
 			className={twMerge(
 				"bg-purple text-white p-8 min-h-96 flex flex-col justify-center text-center items-center mb-12 bg-cover bg-no-repeat",
 				className
