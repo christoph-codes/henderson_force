@@ -31,7 +31,7 @@ export function Hero({
 						<HForceLogo color="#FFF" className="w-36 h-36" />
 					</Link>
 				)}
-				<h1 className="text-6xl">{title}</h1>
+				<h1 className="text-4xl md:text-6xl">{title}</h1>
 				{description && <p className="text-2xl capitalize">{description}</p>}
 			</div>
 		</div>

@@ -2,25 +2,11 @@
 
 import { Button } from "@/components/Button";
 import { HForceVerticalLogo } from "@/components/HForceVerticalLogo";
+import SocialLinks from "@/components/SocialLinks";
+import { getSocialIcons } from "@/utils/helpers";
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FaTiktok, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
-
-export const getSocialIcons = (category: string) => {
-	const styles =
-		"h-8 w-8 hover:text-white transition-colors duration-150 text-gray-300";
-	switch (category) {
-		case "facebook":
-			return <FaFacebook className={styles} />;
-		case "instagram":
-			return <FaInstagram className={styles} />;
-		case "twitter":
-			return <FaTwitter className={styles} />;
-		case "tiktok":
-			return <FaTiktok className={styles} />;
-	}
-};
 
 export function UnderConstruction({
 	content,
@@ -51,22 +37,7 @@ export function UnderConstruction({
 						Sign up now!
 					</Button>
 				</div>
-				{content.socialLinks.length > 0 && (
-					<div className="flex gap-4 md:flex-row md:gap-8">
-						{content.socialLinks.map((link) => {
-							return (
-								<Link
-									key={link._id}
-									href={link.link}
-									className="mt-4"
-									target="_blank"
-								>
-									{getSocialIcons(link.slug.current)}
-								</Link>
-							);
-						})}
-					</div>
-				)}
+				<SocialLinks />
 				<hr className="my-8 border-gray-500 border w-full inset-0" />
 				<h3 className="mb">Ready to play for the Force?</h3>
 				<Button onClick={() => router.push("/join")} className="mt-8">
