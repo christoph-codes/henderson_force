@@ -1,12 +1,12 @@
 "use client";
 
+import BlockParser from "@/components/BlockParser";
 import { Button } from "@/components/Button";
 import { Hero } from "@/components/Hero";
 import { Input } from "@/components/Input";
 import { RadioGroup } from "@/components/RadioGroup";
 import SocialLinks from "@/components/SocialLinks";
 import { SanityDocument } from "next-sanity";
-import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
@@ -22,7 +22,6 @@ const BilletInformation = ({ content }: { content: SanityDocument }) => {
 	const [personalInfo, setPersonalInfo] = useState(defaultPersonalInfo);
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState("");
-	const router = useRouter();
 	const submit = async (e: FormEvent) => {
 		e.preventDefault();
 		setError("");
@@ -65,8 +64,12 @@ const BilletInformation = ({ content }: { content: SanityDocument }) => {
 				logo
 			/>
 			<div className="max-w-full md:max-w-3xl md:mx-auto px-8">
-				<form className="flex flex-col space-y-4 py-8" onSubmit={submit}>
-					<h2 className="text-2xl font-semibold">Details</h2>
+				<form className="flex flex-col space-y-4" onSubmit={submit}>
+					{content && (
+						<section className="max-w-full md:max-w-3xl md:mx-auto rounded-md py-4 space-y-4">
+							<BlockParser data={content.page_content} />
+						</section>
+					)}
 					<Input
 						value={personalInfo["Full Name"] as string}
 						onChange={(e) =>
