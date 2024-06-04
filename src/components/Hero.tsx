@@ -8,6 +8,7 @@ export type HeroProps = {
 	description?: string;
 	logo?: boolean;
 	bg?: string;
+	subtitle?: string;
 };
 
 export function Hero({
@@ -16,6 +17,7 @@ export function Hero({
 	logo,
 	className,
 	bg = "/default_bg.png",
+	subtitle,
 }: HeroProps) {
 	return (
 		<div
@@ -32,7 +34,10 @@ export function Hero({
 					</Link>
 				)}
 				<h1 className="text-4xl md:text-6xl">{title}</h1>
-				{description && <p className="text-2xl capitalize">{description}</p>}
+				{description && (
+					<p className="text-2xl capitalize mb-0">{description}</p>
+				)}
+				{subtitle && <p className="text-lg font-bold">{subtitle}</p>}
 			</div>
 		</div>
 	);
