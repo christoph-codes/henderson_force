@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
 import { urlForImage } from "../../../../sanity/lib/image";
+import { formatTimestampToDate } from "@/utils/helpers";
 
 export type PostProps = {
 	details: SanityDocument;
@@ -16,6 +17,7 @@ const Post = ({ details }: PostProps) => {
 				className="bg-[url('/default_bg.png')]"
 				title={details.title}
 				description={details.description}
+				subtitle={formatTimestampToDate(details.date)}
 			/>
 			<section className="container">
 				<div className="space-y-6">

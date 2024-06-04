@@ -55,7 +55,7 @@ export const post: SchemaTypeDefinition = defineType({
 			group: "metadata",
 		}),
 		defineField({
-			name: "content",
+			name: "page_content",
 			type: "array",
 			of: [{ type: "block" }],
 			group: "content",

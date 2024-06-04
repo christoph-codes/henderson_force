@@ -18,11 +18,11 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { postId: string } }) {
-	const [details]: SanityDocument[] = await fetchSanity(params.postId);
+	const details: SanityDocument[] = await fetchSanity(params.postId);
 
 	return (
-		<PageTemplate>
-			<Post details={details} />
+		<PageTemplate content={details[0].content}>
+			<Post details={details[0]} />
 		</PageTemplate>
 	);
 }

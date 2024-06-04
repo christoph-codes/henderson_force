@@ -21,7 +21,7 @@ export default async function Page() {
 	});
 
 	return (
-		<PageTemplate content={content[0]?.page_content}>
+		<PageTemplate>
 			<BilletInformation content={content[0]} />
 		</PageTemplate>
 	);
