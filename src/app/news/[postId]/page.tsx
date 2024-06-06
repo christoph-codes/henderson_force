@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: { postId: string } }) {
 	const details: SanityDocument[] = await fetchSanity(params.postId);
 
 	return (
-		<PageTemplate content={details[0].content}>
+		<PageTemplate content={details[0].page_content}>
 			<Post details={details[0]} />
 		</PageTemplate>
 	);
