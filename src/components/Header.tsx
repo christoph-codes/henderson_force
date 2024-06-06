@@ -45,6 +45,7 @@ export function Header({
 								</Link>
 							) : (
 								<img
+									key={logo._id}
 									src={urlForImage(logo.logo_image).toString()}
 									alt={`${logo.name} Logo`}
 									className="max-h-[35px]"
