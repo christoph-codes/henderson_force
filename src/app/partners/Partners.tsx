@@ -18,10 +18,10 @@ const Partners = ({
 				description={content.description}
 				logo
 			/>
-			<div className="container text-center">
-				<div className="grid md:grid-cols-4 grid-cols-1 items-center gap-8">
+			<div className="container text-center py-12">
+				<div className="grid md:grid-cols-4 grid-cols-1 items-center gap-y-12 gap-x-8">
 					{partners?.map((logo: any) => {
-						return (
+						return logo.link ? (
 							<Link
 								key={logo._id}
 								href={logo.link}
@@ -34,6 +34,13 @@ const Partners = ({
 									className="w-full max-h-16"
 								/>
 							</Link>
+						) : (
+							<img
+								key={logo._id}
+								src={urlForImage(logo.logo_image).toString()}
+								alt={`${logo.name} Logo`}
+								className="w-full max-h-16"
+							/>
 						);
 					})}
 				</div>
