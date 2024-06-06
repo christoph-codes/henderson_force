@@ -19,7 +19,7 @@ const News = ({
 				logo
 			/>
 			<div className="container text-center">
-				<section className="grid grid-rows-3 md:grid-rows-1 grid-cols-1 md:grid-cols-3 grid-flow-col auto-rows-auto gap-8 md:gap-6 container">
+				<section className="grid grid-cols-1 md:grid-cols-3 grid-flow-row auto-rows-auto gap-8 md:gap-6 container">
 					{news.map((post) => (
 						<FlexCard
 							link={post.link ?? `/news/${post.slug.current}`}

@@ -1,5 +1,4 @@
 import DefaultEmail from "@/emails/defaultEmail";
-import JoinTheForce from "@/emails/defaultEmail";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API);
@@ -18,7 +17,9 @@ export async function POST(req: Request) {
 			from: "Henderson Force Admin <info@hendersonforce.com>",
 			to:
 				process.env.NODE_ENV === "production"
-					? primaryEmailRecipients
+					? body.to
+						? [...primaryEmailRecipients, body.to]
+						: primaryEmailRecipients
 					: ["tkcwebdev@gmail.com"],
 			bcc: process.env.NODE_ENV === "production" ? blindRecipients : [],
 			subject: body.subject,

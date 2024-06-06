@@ -5,7 +5,7 @@ import { querySanity, sanityFetch } from "../../../sanity/lib/client";
 import News from "./News";
 
 const PAGE_QUERY = `*[_type == "page" && slug.current == "news"]`;
-const POST_QUERY = `*[_type == "post"]`;
+const POST_QUERY = `*[_type == "post"] | order(publishedAt desc)`;
 
 export async function generateMetadata(): Promise<Metadata> {
 	const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);

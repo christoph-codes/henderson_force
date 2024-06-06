@@ -26,5 +26,15 @@ export default {
 				},
 			],
 		},
+		{
+			title: "Home Flex Cards",
+			name: "homeCards",
+			type: "array",
+			of: [
+				{
+					type: "flexCard",
+				},
+			],
+		},
 	],
 };
