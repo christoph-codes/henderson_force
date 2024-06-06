@@ -19,7 +19,7 @@ const Partners = ({
 				logo
 			/>
 			<div className="container text-center py-12">
-				<div className="grid md:grid-cols-4 grid-cols-1 items-center gap-y-12 gap-x-8">
+				<div className="grid md:grid-cols-4 grid-cols-1 items-center gap-y-12 space-y-8 gap-x-8">
 					{partners?.map((logo: any) => {
 						return logo.link ? (
 							<Link
