@@ -14,18 +14,18 @@ export default {
 			type: "url",
 			description: "The main site url.",
 		},
-		{
-			title: "Main Navigation",
-			name: "mainNav",
-			description: "Select pages for the top menu",
-			type: "array",
-			of: [
-				{
-					type: "reference",
-					to: [{ type: "page" }],
-				},
-			],
-		},
+		// {
+		// 	title: "Main Navigation",
+		// 	name: "mainNav",
+		// 	description: "Select pages for the top menu",
+		// 	type: "array",
+		// 	of: [
+		// 		{
+		// 			type: "reference",
+		// 			to: [{ type: "page" }],
+		// 		},
+		// 	],
+		// },
 		{
 			title: "Home Flex Cards",
 			name: "homeCards",

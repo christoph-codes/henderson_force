@@ -1,31 +1,28 @@
 import { SanityDocument } from "next-sanity";
-import { sanityFetch } from "../../sanity/lib/client";
-// import { Home } from "./Home";
-import { UnderConstruction } from "./UnderConstruction";
+import { Home } from "./home";
 import { Metadata } from "next";
+import { querySanity } from "../../sanity/lib/client";
+import { PageTemplate } from "./template/PageTemplate";
 
-const UNDER_CONSTRUCTION_QUERY = `*[_type == "page" && slug.current == "under-construction" && home_page == true ]`;
-const SOCIAL_LINKS_QUERY = `*[_type == "link" && "social" in category[]]`;
-// const HOME_QUERY = `*[_type == "page" && slug == "home"]`;
+const PAGE_QUERY = `*[_type == "page" && slug.current == "home"]`;
+const FLEX_CARDS_QUERY = `*[_type == "siteConfig"]`;
 
-export const metadata: Metadata = {
-	title: "Henderson Force",
-	description:
-		"The official Henderson Force website is under construction. Please check back soon for updates.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);
+
+	return {
+		title: `${content.name} | Henderson Force`,
+		description: content.description,
+	};
+}
 
 export default async function Page() {
-	const content: SanityDocument[] = await sanityFetch<SanityDocument[]>({
-		query: UNDER_CONSTRUCTION_QUERY,
-	});
-	const socialLinks: SanityDocument[] = await sanityFetch<SanityDocument[]>({
-		query: SOCIAL_LINKS_QUERY,
-	});
+	const content = await querySanity<SanityDocument>(PAGE_QUERY);
+	const news = await querySanity<SanityDocument>(FLEX_CARDS_QUERY);
 
-	// return <Home content={events} />;
 	return (
-		<main>
-			<UnderConstruction content={{ pageContent: content[0], socialLinks }} />
-		</main>
+		<PageTemplate content={content[0]?.page_content}>
+			<Home content={content[0]} homeCards={news[0].homeCards} />
+		</PageTemplate>
 	);
 }
