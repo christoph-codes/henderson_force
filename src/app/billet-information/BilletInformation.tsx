@@ -45,6 +45,7 @@ const BilletInformation = ({ content }: { content: SanityDocument }) => {
 				body: JSON.stringify({
 					fields: personalInfo,
 					subject: "Billet Information Inquiry",
+					to: "billets@cmbhockey.com",
 				}),
 			});
 			await response.json();
