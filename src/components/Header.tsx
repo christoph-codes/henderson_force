@@ -30,7 +30,7 @@ export function Header({
 					</Link>
 					<div className="hidden md:flex items-center gap-8">
 						{sponsors?.map((logo: any) => {
-							return (
+							return logo.link ? (
 								<Link
 									key={logo._id}
 									href={logo.link}
@@ -40,9 +40,15 @@ export function Header({
 									<img
 										src={urlForImage(logo.logo_image).toString()}
 										alt={`${logo.name} Logo`}
-										className="max-h-[50px]"
+										className="max-h-[35px]"
 									/>
 								</Link>
+							) : (
+								<img
+									src={urlForImage(logo.logo_image).toString()}
+									alt={`${logo.name} Logo`}
+									className="max-h-[35px]"
+								/>
 							);
 						})}
 					</div>
