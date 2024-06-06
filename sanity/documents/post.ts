@@ -66,6 +66,12 @@ export const post: SchemaTypeDefinition = defineType({
 			type: "string",
 			group: "content",
 		}),
+		// need to add order be able to order the featured posts
+		defineField({
+			name: "order",
+			type: "number",
+			group: "metadata",
+		}),
 	],
 	preview: {
 		select: {

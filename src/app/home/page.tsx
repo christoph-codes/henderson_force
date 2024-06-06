@@ -5,7 +5,7 @@ import { querySanity, sanityFetch } from "../../../sanity/lib/client";
 import { PageTemplate } from "../template/PageTemplate";
 
 const PAGE_QUERY = `*[_type == "page" && slug.current == "home"]`;
-const FEATURED_NEWS_QUERY = `*[_type == "post" && featured == true]`;
+const FEATURED_NEWS_QUERY = `*[_type == "post" && featured == true] | order(order asc)`;
 
 export async function generateMetadata(): Promise<Metadata> {
 	const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);
