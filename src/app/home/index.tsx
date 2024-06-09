@@ -20,7 +20,16 @@ export function Home({
 						link={post.link}
 						key={post._key}
 						image={post.image && urlForImage(post.image)}
-						title={post.title}
+						title={post.title.map((block: { children: { text: string }[] }) => {
+							return (
+								<>
+									<span key={block.children[0].text}>
+										{block.children[0].text}
+									</span>
+									<br />
+								</>
+							);
+						})}
 						description={post.description}
 					/>
 				))}

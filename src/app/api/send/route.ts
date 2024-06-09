@@ -1,14 +1,11 @@
 import DefaultEmail from "@/emails/defaultEmail";
+import {
+	blindRecipients,
+	primaryEmailRecipients,
+} from "@/utils/emailRecipients";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API);
-
-const blindRecipients = ["tkcwebdev@gmail.com", "krubinojr@gmail.com"];
-
-const primaryEmailRecipients = [
-	"mattj@hendersonforce.com",
-	"justindoucette@cmbhockey.com",
-];
 
 export async function POST(req: Request) {
 	const body = await req.json();
@@ -18,7 +15,7 @@ export async function POST(req: Request) {
 			to:
 				process.env.NODE_ENV === "production"
 					? body.to
-						? [...primaryEmailRecipients, body.to]
+						? [body.to]
 						: primaryEmailRecipients
 					: ["tkcwebdev@gmail.com"],
 			bcc: process.env.NODE_ENV === "production" ? blindRecipients : [],
