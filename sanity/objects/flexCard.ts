@@ -10,9 +10,10 @@ export const flexCard: SchemaTypeDefinition = defineType({
 	fields: [
 		defineField({
 			name: "title",
-			type: "string",
+			type: "array",
 			validation: (rule) =>
 				rule.required().error(`Required to generate a flex card`),
+			of: [{ type: "block" }],
 		}),
 		defineField({
 			name: "slug",
@@ -48,7 +49,7 @@ export const flexCard: SchemaTypeDefinition = defineType({
 			media: "image",
 		},
 		prepare({ title, subtitle, date, image }) {
-			const nameFormatted = title || "Untitled post";
+			const nameFormatted = title[0].children[0].text || "Untitled post";
 
 			return {
 				title: nameFormatted,

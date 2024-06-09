@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { ReactNode } from "react";
 
 export type FlexCardProps = {
 	link: string;
 	image?: string;
-	title: string;
+	title: ReactNode;
 	description: string;
 };
 
