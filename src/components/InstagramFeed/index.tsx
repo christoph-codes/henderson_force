@@ -1,5 +1,4 @@
 import { InstagramPostData } from "@/app/media/page";
-import Image from "next/image";
 import Link from "next/link";
 
 const InstagramFeed = ({ posts }: { posts: InstagramPostData[] }) => {
@@ -15,9 +14,7 @@ const InstagramFeed = ({ posts }: { posts: InstagramPostData[] }) => {
 							key={post.id}
 							className="group/instagram"
 						>
-							<Image
-								width={300}
-								height={300}
+							<img
 								className="object-cover max-h-[300px] w-full h-full group-hover/instagram:opacity-50 transition-opacity duration-300"
 								src={
 									post.media_type === "VIDEO"
