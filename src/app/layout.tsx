@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import SideNavProvider from "@/providers/SideNavProvider";
@@ -42,6 +43,7 @@ export default function RootLayout({
 				className={`${industry.variable} ${gothic.variable} overflow-x-hidden`}
 			>
 				<SideNavProvider>{children}</SideNavProvider>
+				<GoogleAnalytics gaId="G-QSLY8W3JJ5" />
 			</body>
 		</html>
 	);
