@@ -40,7 +40,7 @@ export function Header({
 									<img
 										src={urlForImage(logo.logo_image).toString()}
 										alt={`${logo.name} Logo`}
-										className="max-h-[35px]"
+										className="max-h-[35px] w-full"
 									/>
 								</Link>
 							) : (
@@ -48,7 +48,7 @@ export function Header({
 									key={logo._id}
 									src={urlForImage(logo.logo_image).toString()}
 									alt={`${logo.name} Logo`}
-									className="max-h-[35px]"
+									className="max-h-[35px] w-full"
 								/>
 							);
 						})}
