@@ -2,7 +2,7 @@ import { Hero } from "@/components/Hero";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "../../../sanity/lib/image";
 import FlexCard from "@/components/FlexCard";
-import JoinTheForceBanner from "@/components/JoinTheForceBanner";
+// import JoinTheForceBanner from "@/components/JoinTheForceBanner";
 
 export function Home({
 	content,
@@ -34,7 +34,7 @@ export function Home({
 					/>
 				))}
 			</section>
-			<JoinTheForceBanner />
+			{/* <JoinTheForceBanner /> */}
 		</>
 	);
 }
