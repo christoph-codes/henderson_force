@@ -31,7 +31,7 @@ const Partners = ({
 								<img
 									src={urlForImage(logo.logo_image).toString()}
 									alt={`${logo.name} Logo`}
-									className="max-h-16 max-content w-full"
+									className="max-h-20 max-content w-full"
 								/>
 							</Link>
 						) : (
@@ -39,7 +39,7 @@ const Partners = ({
 								key={logo._id}
 								src={urlForImage(logo.logo_image).toString()}
 								alt={`${logo.name} Logo`}
-								className="w-full max-h-16"
+								className="w-full max-h-20"
 							/>
 						);
 					})}
