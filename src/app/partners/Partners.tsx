@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "../../../sanity/lib/image";
 import Link from "next/link";
+import PartnerCard from "@/components/PartnerCard";
 
 const Partners = ({
 	content,
@@ -19,27 +20,15 @@ const Partners = ({
 				logo
 			/>
 			<div className="container text-center py-12">
-				<div className="grid md:grid-cols-4 grid-cols-1 items-center gap-y-12 space-y-8 gap-x-8">
+				<div className="flex flex-col items-center gap-y-12 space-y-8">
 					{partners?.map((logo: any) => {
-						return logo.link ? (
-							<Link
+						return (
+							<PartnerCard
 								key={logo._id}
-								href={logo.link}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<img
-									src={urlForImage(logo.logo_image).toString()}
-									alt={`${logo.name} Logo`}
-									className="max-h-20 max-content w-full"
-								/>
-							</Link>
-						) : (
-							<img
-								key={logo._id}
-								src={urlForImage(logo.logo_image).toString()}
-								alt={`${logo.name} Logo`}
-								className="w-full max-h-20"
+								name={logo.name}
+								link={logo.link}
+								logoSrc={urlForImage(logo.logo_image).toString()}
+								description={logo.description}
 							/>
 						);
 					})}
