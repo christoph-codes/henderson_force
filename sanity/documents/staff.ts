@@ -66,6 +66,14 @@ export const staff: SchemaTypeDefinition = defineType({
 			of: [{ type: "block" }],
 			group: "content",
 		}),
+		// need to add a field for alt text
+
+		defineField({
+			name: "actionPhotos",
+			type: "array",
+			of: [{ type: "image" }],
+			group: "content",
+		}),
 	],
 	preview: {
 		select: {
