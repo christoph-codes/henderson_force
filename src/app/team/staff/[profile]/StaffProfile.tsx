@@ -45,6 +45,19 @@ const StaffProfile = ({ profile }: StaffProfileProps) => {
 						<BlockParser data={profile.bio} />
 					</>
 				)}
+				{profile.actionPhotos && profile.actionPhotos.length > 0 && (
+					<div className="grid grid-rows-3 md:grid-cols-3 gap-3 w-full">
+						{profile.actionPhotos.map((photo: any) => (
+							<img
+								key={photo._id}
+								src={urlForImage(photo)}
+								width="100%"
+								alt={`${profile.name} Action Photo`}
+								className="rounded-lg h-full min-h-64 object-cover w-full"
+							/>
+						))}
+					</div>
+				)}
 			</section>
 		</>
 	);
