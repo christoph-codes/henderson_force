@@ -5,6 +5,7 @@ import { PageTemplate } from "@/app/template/PageTemplate";
 import { querySanity, sanityFetch } from "../../../sanity/lib/client";
 
 const PAGE_QUERY = `*[_type == "page" && slug.current == "schedule"]`;
+const SCHEDULE_QUERY = `*[_type == "game"]{...,opponent->} | order(date asc)`;
 
 export async function generateMetadata(): Promise<Metadata> {
 	const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);
@@ -20,9 +21,13 @@ export default async function Page() {
 		query: PAGE_QUERY,
 	});
 
+	const games = await sanityFetch<SanityDocument[]>({
+		query: SCHEDULE_QUERY,
+	});
+
 	return (
 		<PageTemplate content={content[0]?.page_content}>
-			<Schedule content={content[0]} />
+			<Schedule content={content[0]} games={games} />
 		</PageTemplate>
 	);
 }

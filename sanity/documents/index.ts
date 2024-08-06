@@ -9,7 +9,7 @@ import { event } from "./event";
 import { player } from "./player";
 import { SchemaTypeDefinition } from "sanity";
 import siteConfig from "./siteConfig";
-// import navigation from "./navigation";
+import { team } from "./team";
 export const documents: SchemaTypeDefinition[] = [
 	siteConfig,
 	page,
@@ -21,5 +21,5 @@ export const documents: SchemaTypeDefinition[] = [
 	game,
 	event,
 	player,
-	// navigation,
+	team,
 ];
