@@ -8,48 +8,22 @@ export const game: SchemaTypeDefinition = defineType({
 	type: "document",
 	icon: PlayIcon,
 	groups: [
-		{ name: "metadata", title: "Metadata" },
-		{ name: "content", title: "Content" },
+		{ name: "details", title: "Details" },
 		{ name: "results", title: "Results" },
 	],
 	fields: [
 		defineField({
-			name: "opponent_name",
-			type: "string",
-			validation: (rule) =>
-				rule.required().error(`Required to generate a page on the website`),
-			group: ["metadata", "content"],
-		}),
-		defineField({
-			name: "opponent_logo",
-			type: "image",
-			group: "content",
-		}),
-		defineField({
-			name: "slug",
-			type: "slug",
-			hidden: ({ document }) => !document?.opponent_name,
-			validation: (rule) =>
-				rule.required().error(`Required to generate a page on the website`),
-			options: {
-				source: "opponent_name",
-				slugify: (input) =>
-					input
-						.toLowerCase()
-						.replace(/\s+/g, "-")
-						.slice(0, 200)
-						.concat("-" + new Date().getFullYear().toString())
-						.concat("-" + new Date().getMonth().toString())
-						.concat("-" + new Date().getUTCDay().toString()),
-			},
-			group: "metadata",
+			name: "opponent",
+			type: "reference",
+			to: [{ type: "team" }],
+			group: "details",
 		}),
 		defineField({
 			name: "date",
 			type: "datetime",
 			validation: (rule) =>
 				rule.required().error(`Date and time of the game is required`),
-			group: "content",
+			group: "details",
 		}),
 		defineField({
 			name: "at_vs",
@@ -59,7 +33,7 @@ export const game: SchemaTypeDefinition = defineType({
 				list: ["at", "vs"],
 				layout: "radio",
 			},
-			group: "content",
+			group: "details",
 		}),
 		defineField({
 			name: "opponent_score",
@@ -74,12 +48,12 @@ export const game: SchemaTypeDefinition = defineType({
 		defineField({
 			name: "game_link",
 			type: "url",
-			group: "results",
+			group: "details",
 		}),
 	],
 	preview: {
 		select: {
-			title: "opponent_name",
+			title: "opponent.name",
 			media: "opponent_logo",
 			date: "date",
 			atvs: "at_vs",
