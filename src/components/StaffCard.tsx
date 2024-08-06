@@ -21,7 +21,7 @@ const StaffCard = ({
 }) => {
 	return (
 		<div className="py-8 flex flex-col gap-3">
-			<h2 className="pb-6">{type}</h2>
+			<h2 className="pb-6">{type === "coach" ? "Coaches" : type}</h2>
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 				{staff.map((staff: SanityDocument) => (
 					<div key={staff._id} className="flex gap-4 items-center">

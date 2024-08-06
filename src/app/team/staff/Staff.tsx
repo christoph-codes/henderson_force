@@ -20,7 +20,7 @@ export function Staff({
 				« Back to Team
 			</Link>
 			<section className="container flex flex-col gap-6">
-				{["ownership", "leadership", "coach"].map((type) => (
+				{["coach", "leadership", "ownership"].map((type) => (
 					<StaffCard
 						key={type}
 						type={type as StaffType["type"]}
