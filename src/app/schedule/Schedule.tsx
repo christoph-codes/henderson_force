@@ -18,17 +18,17 @@ const Schedule = ({
 				description={content.description}
 				logo
 			/>
-			<div className="container text-center">
+			<div className="md:container text-center">
 				{games.length > 0 ? (
 					<section className="container flex flex-col mb-6">
 						<table className="table-auto">
-							<thead>
+							<thead className="hidden md:table-header-group">
 								<tr className="text-left border-b">
-									<th className="hidden md:table-cell p-2 w-10">Opponent</th>
+									<th className="p-2 w-10">Opponent</th>
 									<th className="flex-grow p-2"></th>
-									<th className="hidden md:table-cell p-2">Venue</th>
-									<th className="hidden md:table-cell p-2">Date</th>
-									<th className="hidden md:table-cell p-2"></th>
+									<th className="p-2">Venue</th>
+									<th className="p-2">Date</th>
+									<th className="p-2"></th>
 								</tr>
 							</thead>
 							<tbody>

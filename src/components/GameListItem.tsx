@@ -22,7 +22,7 @@ const GameListItem = ({
 }: GameListItemProps) => {
 	return (
 		<tr className="rounded-md border-b border-gray-800 text-gray-400">
-			<td className="hidden md:table-cell p-2">
+			<td className="p-2">
 				<img
 					src={image ?? "/hforce_icon.svg"}
 					alt={`${title} image`}
@@ -30,11 +30,21 @@ const GameListItem = ({
 				/>
 			</td>
 			<td className="p-2 font-bold text-left">
-				{atvs} {title}
+				<Link
+					className="text-white hover:text-primary font-bold transition-colors"
+					href={link}
+				>
+					{atvs === "at" ? "@" : "vs"} {title}
+					<span className="block md:hidden text-gray-300 font-normal">
+						{formatTimestampToDate(date)}
+					</span>
+				</Link>
 			</td>
-			<td className="p-2 font-bold text-left">{venue}</td>
-			<td className="p-2 font-bold text-left">{formatTimestampToDate(date)}</td>
-			<td className="p-2 text-right">
+			<td className="hidden md:table-cell p-2 font-bold text-left">{venue}</td>
+			<td className="hidden md:table-cell p-2 font-bold text-left">
+				{formatTimestampToDate(date)}
+			</td>
+			<td className="hidden md:table-cell p-2 text-right">
 				<Link
 					className="text-white hover:text-primary font-bold transition-colors"
 					href={link}
