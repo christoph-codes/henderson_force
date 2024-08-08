@@ -19,6 +19,11 @@ export const partner_logos: SchemaTypeDefinition = defineType({
 			group: "metadata",
 		}),
 		defineField({
+			name: "featured",
+			type: "boolean",
+			group: "content",
+		}),
+		defineField({
 			name: "slug",
 			type: "slug",
 			hidden: ({ document }) => !document?.name,
