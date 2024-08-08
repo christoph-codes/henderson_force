@@ -23,8 +23,16 @@ export const getSocialIcons = (category: string, size: number) => {
 	}
 };
 
-export const formatTimestampToDate = (timestamp: string) => {
+export const formatTimestampToDate = (
+	timestamp: string,
+	time: boolean = false
+) => {
 	const date = new Date(timestamp);
 	const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-	return formattedDate;
+	const hours = date.getHours();
+	const minutes = date.getMinutes().toString().padStart(2, "0");
+	const period = hours >= 12 ? "PM" : "AM";
+	const formattedHours = hours % 12 || 12;
+	const formattedTime = `${formattedHours}:${minutes} ${period}`;
+	return `${formattedDate} ${time ? formattedTime : ""}`;
 };

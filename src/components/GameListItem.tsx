@@ -35,14 +35,14 @@ const GameListItem = ({
 					href={link}
 				>
 					{atvs === "at" ? "@" : "vs"} {title}
-					<span className="block md:hidden text-gray-300 font-normal">
-						{formatTimestampToDate(date)}
+					<span className="block md:hidden text-gray-400 font-normal">
+						{formatTimestampToDate(date, true)}
 					</span>
 				</Link>
 			</td>
 			<td className="hidden md:table-cell p-2 font-bold text-left">{venue}</td>
 			<td className="hidden md:table-cell p-2 font-bold text-left">
-				{formatTimestampToDate(date)}
+				{formatTimestampToDate(date, true)}
 			</td>
 			<td className="hidden md:table-cell p-2 text-right">
 				<Link
