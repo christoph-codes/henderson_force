@@ -13,7 +13,31 @@ export default {
 			name: "url",
 			type: "url",
 			description: "The main site url.",
-		},
+		defineField({
+			title: "Countdowns",
+			name: "countdowns",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					name: "countdown_date_item",
+					title: "Countdown Date Item",
+					fields: [
+						defineField({
+							name: "countdown_name",
+							type: "string",
+							title: "Label",
+						}),
+						defineField({
+							type: "datetime",
+							name: "date",
+							title: "Date",
+							options: { dateFormat: "YYYY-MM-DD" },
+						}),
+					],
+				},
+			],
+		}),
 		// {
 		// 	title: "Main Navigation",
 		// 	name: "mainNav",
