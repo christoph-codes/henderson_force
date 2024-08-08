@@ -5,7 +5,7 @@ import { querySanity } from "../../sanity/lib/client";
 import { PageTemplate } from "./template/PageTemplate";
 
 const PAGE_QUERY = `*[_type == "page" && slug.current == "home"]`;
-const FLEX_CARDS_QUERY = `*[_type == "siteConfig"]`;
+const SITE_CONFIG_QUERY = `*[_type == "siteConfig"]`;
 
 export async function generateMetadata(): Promise<Metadata> {
 	const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);
@@ -18,11 +18,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
 	const content = await querySanity<SanityDocument>(PAGE_QUERY);
-	const news = await querySanity<SanityDocument>(FLEX_CARDS_QUERY);
+	const siteConfig = await querySanity<SanityDocument>(SITE_CONFIG_QUERY);
 
 	return (
 		<PageTemplate content={content[0]?.page_content}>
-			<Home content={content[0]} homeCards={news[0].homeCards} />
+			<Home content={content[0]} siteConfig={siteConfig[0]} />
 		</PageTemplate>
 	);
 }

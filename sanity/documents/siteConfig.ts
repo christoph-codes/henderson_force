@@ -1,18 +1,33 @@
-export default {
+import { defineField, defineType, SchemaTypeDefinition } from "sanity";
+
+export const siteConfig: SchemaTypeDefinition = defineType({
 	name: "siteConfig",
 	type: "document",
 	title: "Site Settings",
 	fields: [
-		{
+		defineField({
 			name: "title",
 			type: "string",
 			title: "Site title",
-		},
-		{
+		}),
+		defineField({
 			title: "URL",
 			name: "url",
 			type: "url",
 			description: "The main site url.",
+		}),
+		defineField({
+			title: "Watch Live Image",
+			name: "watch_live_image",
+			type: "image",
+			description: "The watch live image",
+		}),
+		defineField({
+			title: "Watch Live URL",
+			name: "watch_live_url",
+			type: "url",
+			description: "The watch live url",
+		}),
 		defineField({
 			title: "Countdowns",
 			name: "countdowns",
@@ -50,7 +65,7 @@ export default {
 		// 		},
 		// 	],
 		// },
-		{
+		defineField({
 			title: "Home Flex Cards",
 			name: "homeCards",
 			type: "array",
@@ -59,6 +74,6 @@ export default {
 					type: "flexCard",
 				},
 			],
-		},
+		}),
 	],
-};
+});

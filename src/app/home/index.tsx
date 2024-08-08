@@ -49,6 +49,21 @@ export function Home({
 					/>
 				))}
 			</section>
+
+			{siteConfig.watch_live_url && siteConfig.watch_live_image && (
+				<div className="flex justify-center">
+					<Link href={siteConfig.watch_live_url} target="_blank">
+						<img
+							className="mb-3 text-center"
+							alt="Watch Live on FloHockey"
+							src={
+								siteConfig.watch_live_image &&
+								urlForImage(siteConfig.watch_live_image).toString()
+							}
+						/>
+					</Link>
+				</div>
+			)}
 			{/* <JoinTheForceBanner /> */}
 		</>
 	);

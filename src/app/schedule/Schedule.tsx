@@ -2,6 +2,7 @@ import GameListItem from "@/components/GameListItem";
 import { Hero } from "@/components/Hero";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "../../../sanity/lib/image";
+import Link from "next/link";
 import CountdownTimer from "@/components/CountdownTimer";
 
 const Schedule = ({
@@ -33,6 +34,20 @@ const Schedule = ({
 				</div>
 			)}
 			<div className="md:container text-center">
+				{siteConfig.watch_live_url && siteConfig.watch_live_image && (
+					<div className="flex justify-center">
+						<Link href={siteConfig.watch_live_url} target="_blank">
+							<img
+								className="mb-3"
+								alt="Watch Live on FloHockey"
+								src={
+									siteConfig.watch_live_image &&
+									urlForImage(siteConfig.watch_live_image).toString()
+								}
+							/>
+						</Link>
+					</div>
+				)}
 				{games.length > 0 ? (
 					<section className="container flex flex-col mb-6">
 						<table className="table-auto">
