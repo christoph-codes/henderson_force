@@ -30,27 +30,29 @@ export function Header({
 					</Link>
 					<div className="hidden md:flex items-center gap-8">
 						{sponsors?.map((logo: any) => {
-							return logo.link ? (
-								<Link
-									key={logo._id}
-									href={logo.link}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
+							if (logo.featured) {
+								return logo.link ? (
+									<Link
+										key={logo._id}
+										href={logo.link}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<img
+											src={urlForImage(logo.logo_image).toString()}
+											alt={`${logo.name} Logo`}
+											className="max-h-[35px] w-full"
+										/>
+									</Link>
+								) : (
 									<img
+										key={logo._id}
 										src={urlForImage(logo.logo_image).toString()}
 										alt={`${logo.name} Logo`}
 										className="max-h-[35px] w-full"
 									/>
-								</Link>
-							) : (
-								<img
-									key={logo._id}
-									src={urlForImage(logo.logo_image).toString()}
-									alt={`${logo.name} Logo`}
-									className="max-h-[35px] w-full"
-								/>
-							);
+								);
+							}
 						})}
 					</div>
 					<div className="block md:hidden">
