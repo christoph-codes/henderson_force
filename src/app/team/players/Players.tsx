@@ -5,6 +5,7 @@ import { SanityDocument } from "next-sanity";
 import JoinTheForceBanner from "@/components/JoinTheForceBanner";
 import PlayerListItem from "@/components/PlayerListItem";
 import Link from "next/link";
+import { urlForImage } from "../../../../sanity/lib/image";
 
 export function Players({
 	content,
@@ -40,7 +41,7 @@ export function Players({
 							{players?.map((player) => (
 								<PlayerListItem
 									key={player._id}
-									image={player.image}
+									image={player.image && urlForImage(player.image)}
 									jerseyNumber={player.number}
 									title={player.name}
 									position={player.position}
