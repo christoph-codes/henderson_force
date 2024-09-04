@@ -22,7 +22,7 @@ const PlayerListItem = ({
 				<img
 					src={image ?? "/hforce_icon.svg"}
 					alt={`${title} image`}
-					className="w-10 h-10 min-w-10 min-h-10 bg-black rounded-lg p-1"
+					className="w-10 h-10 min-w-10 min-h-10 bg-black rounded-lg p-1 object-cover"
 				/>
 			</td>
 			<td className="p-2 font-bold">{jerseyNumber}</td>
