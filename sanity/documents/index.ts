@@ -11,15 +11,15 @@ import { SchemaTypeDefinition } from "sanity";
 import { siteConfig } from "./siteConfig";
 import { team } from "./team";
 export const documents: SchemaTypeDefinition[] = [
-	siteConfig,
-	page,
-	post,
-	media,
-	link,
-	staff,
-	partner_logos,
-	game,
-	event,
-	player,
-	team,
+  siteConfig,
+  page,
+  post,
+  media,
+  link,
+  staff,
+  partner_logos,
+  game,
+  event,
+  player,
+  team,
 ];

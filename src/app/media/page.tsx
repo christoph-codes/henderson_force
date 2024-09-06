@@ -14,7 +14,6 @@ export type InstagramPostData = {
 };
 
 const PAGE_QUERY = `*[_type == "page" && slug.current == "media"]`;
-const POST_QUERY = `*[_type == "media"]`;
 
 const instagramUrl = `https://graph.instagram.com/${process.env.NEXT_PUBLIC_INSTAGRAM_USERID}/media?fields=id,media_type,media_url,permalink,caption,thumbnail_url&access_token=${process.env.NEXT_PUBLIC_INSTAGRAM_ACCESSTOKEN_LONGLIVE}`;
 
@@ -42,6 +41,7 @@ export default async function Page() {
 		query: PAGE_QUERY,
 	});
 	const instagramPosts = await getInstagramPosts();
+	// console.log("instagramPosts", instagramPosts);
 
 	return (
 		<PageTemplate content={content[0]?.page_content}>

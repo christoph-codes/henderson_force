@@ -5,6 +5,13 @@ import { SanityDocument } from "next-sanity";
 import JoinTheForceBanner from "@/components/JoinTheForceBanner";
 import StaffCard, { StaffType } from "@/components/StaffCard";
 import Link from "next/link";
+import {
+	Key,
+	ReactElement,
+	ReactNode,
+	ReactPortal,
+	AwaitedReactNode,
+} from "react";
 
 export function Staff({
 	content,
@@ -30,13 +37,32 @@ export function Staff({
 			</section>
 			{content.page_content && (
 				<section className="container rounded-md p-8 text-center text-2xl">
-					{content.page_content?.map((block: any) => (
-						<div key={block._key}>
-							{block._type === "block" && (
-								<p className="text-lg">{block.children[0].text}</p>
-							)}
-						</div>
-					))}
+					{content.page_content?.map(
+						(block: {
+							_key: Key | null | undefined;
+							_type: string;
+							children: {
+								text:
+									| string
+									| number
+									| bigint
+									| boolean
+									| ReactElement
+									| Iterable<ReactNode>
+									| ReactPortal
+									| Promise<AwaitedReactNode>
+									| Iterable<ReactNode>
+									| null
+									| undefined;
+							}[];
+						}) => (
+							<div key={block._key}>
+								{block._type === "block" && (
+									<p className="text-lg">{block.children[0].text}</p>
+								)}
+							</div>
+						)
+					)}
 				</section>
 			)}
 			<JoinTheForceBanner />

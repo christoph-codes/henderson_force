@@ -4,6 +4,7 @@ import { SanityDocument } from "next-sanity";
 import { urlForImage } from "../../../../../sanity/lib/image";
 import Link from "next/link";
 import BlockParser from "@/components/BlockParser";
+import { SanityAsset } from "@sanity/image-url/lib/types/types";
 
 export type StaffProfileProps = {
 	profile: SanityDocument;
@@ -47,7 +48,7 @@ const StaffProfile = ({ profile }: StaffProfileProps) => {
 				)}
 				{profile.actionPhotos && profile.actionPhotos.length > 0 && (
 					<div className="grid grid-rows-3 md:grid-cols-3 gap-3 w-full">
-						{profile.actionPhotos.map((photo: any) => (
+						{profile.actionPhotos.map((photo: SanityAsset) => (
 							<img
 								key={photo._id}
 								src={urlForImage(photo)}

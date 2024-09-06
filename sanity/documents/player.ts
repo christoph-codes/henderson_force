@@ -52,11 +52,17 @@ export const player: SchemaTypeDefinition = defineType({
 			group: "content",
 		}),
 		defineField({
+			name: "alumni",
+			title: "Alumni?",
+			type: "boolean",
+			group: "content",
+		}),
+		defineField({
 			name: "position",
 			title: "Position",
 			type: "string",
 			options: {
-				list: ["Goalkeeper", "Defender", "Midfielder", "Forward"],
+				list: ["Goalie", "Defense", "Forward"],
 				layout: "dropdown",
 			},
 			group: "content",
@@ -64,13 +70,17 @@ export const player: SchemaTypeDefinition = defineType({
 		defineField({
 			name: "elite_prospects",
 			title: "Elite Prospects Link",
-			type: "string",
+			placeholder:
+				"https://www.eliteprospects.com/player/32872/jonathan-marchessault",
+			type: "url",
 			group: "content",
 		}),
 		defineField({
-			name: "hudl",
-			title: "Hudl",
-			type: "string",
+			name: "usphl",
+			title: "USPHL Link",
+			description: "Link to the player's USPHL profile",
+			placeholder: "https://www.usphl.com/player?playerId=123456",
+			type: "url",
 			group: "content",
 		}),
 		defineField({

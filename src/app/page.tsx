@@ -8,21 +8,21 @@ const PAGE_QUERY = `*[_type == "page" && slug.current == "home"]`;
 const SITE_CONFIG_QUERY = `*[_type == "siteConfig"]`;
 
 export async function generateMetadata(): Promise<Metadata> {
-	const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);
+  const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);
 
-	return {
-		title: `${content.name} | Henderson Force`,
-		description: content.description,
-	};
+  return {
+    title: `${content.name} | Henderson Force`,
+    description: content.description,
+  };
 }
 
 export default async function Page() {
-	const content = await querySanity<SanityDocument>(PAGE_QUERY);
-	const siteConfig = await querySanity<SanityDocument>(SITE_CONFIG_QUERY);
+  const content = await querySanity<SanityDocument>(PAGE_QUERY);
+  const siteConfig = await querySanity<SanityDocument>(SITE_CONFIG_QUERY);
 
-	return (
-		<PageTemplate content={content[0]?.page_content}>
-			<Home content={content[0]} siteConfig={siteConfig[0]} />
-		</PageTemplate>
-	);
+  return (
+    <PageTemplate content={content[0]?.page_content}>
+      <Home content={content[0]} siteConfig={siteConfig[0]} />
+    </PageTemplate>
+  );
 }

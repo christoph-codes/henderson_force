@@ -1,9 +1,6 @@
 "use client";
 
-import Countdown, {
-	CountdownRendererFn,
-	CountdownRenderProps,
-} from "react-countdown";
+import Countdown, { CountdownRenderProps } from "react-countdown";
 import CountdownUnit from "./CountdownUnit";
 
 export type CountdownTimerProps = {

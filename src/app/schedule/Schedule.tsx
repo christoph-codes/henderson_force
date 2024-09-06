@@ -15,7 +15,8 @@ const Schedule = ({
 	siteConfig: SanityDocument;
 }) => {
 	const firstGameCountdown = siteConfig.countdowns.find(
-		(countdown: any) => countdown.countdown_name === "First game of the year"
+		(countdown: { countdown_name: string }) =>
+			countdown.countdown_name === "First game of the year"
 	);
 	return (
 		<>

@@ -1,5 +1,4 @@
 "use client";
-import Sidenav from "@/components/Sidenav";
 import {
 	PropsWithChildren,
 	createContext,

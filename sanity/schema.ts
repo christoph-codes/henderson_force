@@ -3,5 +3,5 @@ import { documents } from "./documents";
 import { objects } from "./objects";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-	types: [...documents, ...objects],
+  types: [...documents, ...objects],
 };

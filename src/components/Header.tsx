@@ -29,7 +29,7 @@ export function Header({
 						<HForceHorizontalLogo className="max-w-[150px]" />
 					</Link>
 					<div className="hidden md:flex items-center gap-8">
-						{sponsors?.map((logo: any) => {
+						{sponsors?.map((logo) => {
 							if (logo.featured) {
 								return logo.link ? (
 									<Link

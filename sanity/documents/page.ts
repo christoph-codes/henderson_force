@@ -40,7 +40,7 @@ export const page: SchemaTypeDefinition = defineType({
 		defineField({
 			name: "image",
 			description:
-				"This field is important for SEO and should be edited everytime",
+				"This field is important for SEO and should be edited everytime. Size 1440px × 815px",
 			type: "image",
 			group: "content",
 		}),

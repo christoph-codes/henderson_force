@@ -79,7 +79,20 @@ const PlayerProfile = ({ profile }: PlayerProfileProps) => {
 						{profile.elite_prospects && (
 							<>
 								<h4>Elite Prospects Link</h4>
-								<p>{profile.elite_prospects}</p>
+								<Link
+									className="btn mt-2 inline-block"
+									href={profile.elite_prospects}
+								>
+									Visit
+								</Link>
+							</>
+						)}
+						{profile.usphl && (
+							<>
+								<h4>USPHL Link</h4>
+								<Link className="btn mt-2 inline-block" href={profile.usphl}>
+									Visit
+								</Link>
 							</>
 						)}
 					</div>
@@ -92,6 +105,7 @@ const PlayerProfile = ({ profile }: PlayerProfileProps) => {
 						</>
 					)}
 				</div>
+				<hr className="my-10 border-gray-300" />
 				<Link
 					href="/team/players"
 					className="btn text-center mx-auto w-max block"

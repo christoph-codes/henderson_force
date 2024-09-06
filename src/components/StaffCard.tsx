@@ -7,7 +7,7 @@ export type StaffType = {
 	slug: { current: string };
 	type: "ownership" | "coach" | "leadership";
 	link: string;
-	image: string | any;
+	image: string;
 	name: string;
 	title: string;
 };
