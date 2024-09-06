@@ -1,7 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { SanityDocument } from "next-sanity";
 import { urlForImage } from "../../../sanity/lib/image";
-import Link from "next/link";
 import PartnerCard from "@/components/PartnerCard";
 
 const Partners = ({
@@ -21,7 +20,7 @@ const Partners = ({
 			/>
 			<div className="container text-center py-12">
 				<div className="flex flex-col items-center gap-y-12 space-y-8">
-					{partners?.map((logo: any) => {
+					{partners?.map((logo) => {
 						return (
 							<PartnerCard
 								key={logo._id}

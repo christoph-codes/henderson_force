@@ -1,7 +1,6 @@
 "use client";
 import { formatTimestampToDate } from "@/utils/helpers";
 import Link from "next/link";
-import { urlForImage } from "../../sanity/lib/image";
 
 export type GameListItemProps = {
 	image: string;

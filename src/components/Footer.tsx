@@ -14,7 +14,7 @@ const Footer = async () => {
 				<SocialLinks />
 				{footerLinks && (
 					<div className="hidden text-center md:flex flex-col md:flex-row justify-center gap-6 mb-4">
-						{footerLinks.map((link: any) => {
+						{footerLinks.map((link) => {
 							return (
 								<Link
 									key={link._id}

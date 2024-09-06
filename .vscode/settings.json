@@ -1,6 +1,7 @@
 {
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit"
+		"source.fixAll.eslint": "explicit",
+		"source.addMissingImports": "always"
 	},
 	"eslint.validate": [
 		"javascript",
@@ -9,5 +10,8 @@
 		"jsx",
 		"typescriptreact",
 		"css"
-	]
+	],
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }

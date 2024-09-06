@@ -5,7 +5,7 @@ import { querySanity, sanityFetch } from "../../../../sanity/lib/client";
 import { PageTemplate } from "@/app/template/PageTemplate";
 
 const PAGE_QUERY = `*[_type == "page" && slug.current == "players"]`;
-const STAFF_QUERY = `*[_type == "player"]`;
+const STAFF_QUERY = `*[_type == "player" && alumni == false]`;
 
 export async function generateMetadata(): Promise<Metadata> {
 	const [content] = await querySanity<SanityDocument[]>(PAGE_QUERY);
