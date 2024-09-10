@@ -23,7 +23,6 @@ export default async function Page() {
 	const players: SanityDocument[] = await sanityFetch<SanityDocument[]>({
 		query: STAFF_QUERY,
 	});
-	console.log("players", players);
 
 	return (
 		<PageTemplate content={content[0]?.page_content}>
