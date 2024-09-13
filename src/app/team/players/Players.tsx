@@ -20,7 +20,7 @@ export function Players({
         className="bg-[url('/default_bg.png')]"
         title={content.name}
         description={content.description}
-        image={content.image}
+        bg={content.image && urlForImage(content.image)}
         logo
       />
       <Link href="/team" className="btn text-center mx-auto w-max block">
