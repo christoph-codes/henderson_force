@@ -75,6 +75,8 @@ const Schedule = ({
 										}
 										date={game.date}
 										link={game.game_link}
+										opponent_score={game.opponent_score}
+										team_score={game.team_score}
 									/>
 								))}
 							</tbody>

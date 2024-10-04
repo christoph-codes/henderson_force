@@ -9,6 +9,8 @@ export type GameListItemProps = {
 	atvs: "at" | "vs";
 	date: string;
 	link: string;
+	opponent_score?: number;
+	team_score?: number;
 };
 
 const GameListItem = ({
@@ -18,7 +20,16 @@ const GameListItem = ({
 	venue,
 	atvs,
 	link,
+	opponent_score,
+	team_score,
 }: GameListItemProps) => {
+	const score =
+		opponent_score && team_score
+			? opponent_score > team_score
+				? `L (${team_score}-${opponent_score})`
+				: `W (${team_score}-${opponent_score})`
+			: "";
+	console.log("score", score);
 	return (
 		<tr className="rounded-md border-b border-gray-800 text-gray-400">
 			<td className="p-2">
@@ -33,7 +44,7 @@ const GameListItem = ({
 					className="text-white hover:text-primary font-bold transition-colors"
 					href={link}
 				>
-					{atvs === "at" ? "@" : "vs"} {title}
+					{atvs === "at" ? "@" : "vs"} {title} {score && score}
 					<span className="block md:hidden text-gray-400 font-normal">
 						{formatTimestampToDate(date, true)}
 					</span>
