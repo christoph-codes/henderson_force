@@ -15,7 +15,7 @@ export function Home({
 	content: SanityDocument;
 	siteConfig: SanityDocument;
 }) {
-	const firstGameCountdown = siteConfig.countdowns.find(
+	const firstGameCountdown = siteConfig.countdowns?.find(
 		(countdown: { countdown_name: string }) =>
 			countdown.countdown_name === "First game of the year"
 	);
