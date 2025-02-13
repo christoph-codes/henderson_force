@@ -24,12 +24,11 @@ const GameListItem = ({
 	team_score,
 }: GameListItemProps) => {
 	const score =
-		opponent_score && team_score
+		opponent_score !== undefined && team_score !== undefined
 			? opponent_score > team_score
 				? `L (${team_score}-${opponent_score})`
 				: `W (${team_score}-${opponent_score})`
 			: "";
-	console.log("score", score);
 	return (
 		<tr className="rounded-md border-b border-gray-800 text-gray-400">
 			<td className="p-2">
